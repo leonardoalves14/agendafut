@@ -1,0 +1,54 @@
+﻿
+@model IEnumerable<SocietyAgendor.UI.Models.ClienteModel>
+
+@{
+    ViewData["Title"] = "Clientes";
+    Layout = "_LayoutLogado";
+}
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading text-center">
+        <h2>Lista de clientes</h2>
+        <p>
+            <a asp-controller="Cliente" asp-action="CreateCliente" class="btn btn-default">Adicionar Cliente</a>
+        </p>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 200px;">
+                    @Html.DisplayNameFor(model => model.Cliente_Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente_CPF)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente_Email)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente_Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente_CPF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente_Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Agendar", "Index", new { clienteId = item.Cliente_Id }) |
+                    @Html.ActionLink("Editar", "UpdateCliente", new { clienteId = item.Cliente_Id }) |
+                    @Html.ActionLink("Excluir", "DeleteCliente", new { clienteId = item.Cliente_Id })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

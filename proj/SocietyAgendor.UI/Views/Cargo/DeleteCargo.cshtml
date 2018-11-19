@@ -1,0 +1,27 @@
+﻿@model SocietyAgendor.UI.Models.CargoModel
+
+@{
+    ViewData["Title"] = "DeleteCargo";
+    Layout = "_LayoutLogado";
+}
+
+<h2>Deseja realmente excluir este registro?</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DeleteCargo">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.Cargo_Id)
+            @Html.HiddenFor(model => model.Cargo_Desc)
+
+            <div class="form-group">
+                <input type="submit" value="Sim" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger">Não</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

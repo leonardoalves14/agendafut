@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SocietyAgendor.UI.Models.HorarioModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutLogado";
+}
+
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading text-center">
+        <h2>Lista de Horários</h2>
+        <p>
+            <a asp-action="CreateHorario" class="btn btn-default">Novo Horário</a>
+        </p>
+    </div>
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiaSemana_Desc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Horario_De)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Horario_Ate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaSemana_Desc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Horario_De)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Horario_Ate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Detalhes", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Excluir", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

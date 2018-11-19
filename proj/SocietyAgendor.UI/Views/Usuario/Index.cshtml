@@ -1,0 +1,117 @@
+﻿@model IEnumerable<UsuarioModel>
+@{
+    ViewData["Title"] = "Usuário";
+    Layout = "_LayoutLogado";
+}
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading text-center">
+        <h3>Lista de Usuários</h3>
+        <p><button id="btnNovoUsuario" class="btn btn-sm btn-default">Novo Usuário</button></p>
+    </div>
+    <table class="table" id="tableUsers">
+        <thead>
+            <tr>
+                <th style="width: 150px;"></th>
+                <th style="width: 80px;">Id</th>
+                <th>@Html.DisplayNameFor(m => m.Usuario_Login)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>
+                        <button type="button" onclick="editUser(event)" data-userid="@usuario.Usuario_Id" class="btn btn-sm btn-default editUser">Editar</button>
+                        <a class="btn btn-sm btn-danger" data-userid="@usuario.Usuario_Id" onclick="deleteUser(event)">Excluir</a>
+                    </td>
+                    <th>@usuario.Usuario_Id</th>
+                    <td>@usuario.Usuario_Login</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    @* Partial Content *@
+</div>
+
+@section scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script>
+        function editUser(event) {
+            event.preventDefault();
+            var user = {
+                usuarioId: event.target.getAttribute('data-userid')
+            };
+
+            $.ajax({
+                type: "GET",
+                url: "/Usuario/UsuarioUpdate",
+                data: user,
+                async: true,
+                cache: false,
+                success: function (response) {
+                    $('#exampleModal').html(response);
+                    $('#exampleModal').modal('show');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+       
+        function deleteUser(event) {
+            event.preventDefault();
+            var user = {
+                usuarioId: event.target.getAttribute('data-userid')
+            };
+
+            $.ajax({
+                type: "GET",
+                url: "/Usuario/UsuarioDeletePartial",
+                data: user,
+                async: true,
+                cache: false,
+                success: function (response) {
+                    $('#exampleModal').html(response);
+                    $('#exampleModal').modal('show');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        $("#btnNovoUsuario").on('click', function () {
+            event.preventDefault();
+
+            $.ajax({
+                type: "GET",
+                url: "/Usuario/UsuarioAdd",
+                async: true,
+                cache: false,
+                success: function (response) {
+                    $('#exampleModal').html(response);
+                    $('#exampleModal').modal('show');
+                    $.validator.unobtrusive.parse("#frmNewUsuario");
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+
+    </script>
+}

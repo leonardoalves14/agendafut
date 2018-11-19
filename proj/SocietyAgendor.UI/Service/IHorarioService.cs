@@ -1,0 +1,15 @@
+﻿using SocietyAgendor.UI.Models;
+using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
+
+namespace SocietyAgendor.UI.Service
+{
+    public interface IHorarioService
+    {
+        Task<List<HorarioModel>> GetHorariosAsync();
+        Task<HorarioModel> CreateHorarioAsync(HorarioModel model);
+        Task<HttpStatusCode> UpdateHorarioAsync(HorarioModel model);
+        Task<HttpStatusCode> DeleteHorarioAsync(int horarioId);
+    }
+}

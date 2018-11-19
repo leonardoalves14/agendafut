@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SocietyAgendor.UI.Models.CargoModel>
+
+@{
+    ViewData["Title"] = "Cargos";
+    Layout = "_LayoutLogado";
+}
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading text-center">
+        <h2>Cargos</h2>
+        <p>
+            <a asp-controller="Cargo" asp-action="CreateCargo" class="btn btn-default">Novo Cargo</a>
+        </p>
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 80px;">
+                    @Html.DisplayNameFor(model => model.Cargo_Desc)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cargo_Desc)
+                </td>
+                <td style="width: 2px;">
+                @Html.ActionLink("Editar", "UpdateCargo", new { cargoId = item.Cargo_Id }) |
+                @Html.ActionLink("Excluir", "DeleteCargo", new { cargoId = item.Cargo_Id })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

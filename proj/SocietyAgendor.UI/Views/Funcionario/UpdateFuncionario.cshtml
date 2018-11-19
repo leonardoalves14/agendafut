@@ -1,0 +1,186 @@
+﻿@model SocietyAgendor.UI.Models.FuncionarioModel
+
+@{
+    ViewData["Title"] = "Funcionário";
+    Layout = "_LayoutLogado";
+
+}
+
+<h2>Atualizar Funcionário</h2>
+<hr />
+
+<form asp-controller="Funcionario" asp-action="UpdateFuncionario" method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Funcionario_Id)
+    @Html.HiddenFor(m => m.Endereco_Id)
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Funcionario_Nome" class="control-label"></label>
+                <input asp-for="Funcionario_Nome" class="form-control" />
+                <span asp-validation-for="Funcionario_Nome" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Funcionario_CPF" class="control-label"></label>
+                <input asp-for="Funcionario_CPF" class="form-control" />
+
+                <span asp-validation-for="Funcionario_CPF" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Funcionario_RG" class="control-label"></label>
+                <input asp-for="Funcionario_RG" class="form-control" />
+                <span asp-validation-for="Funcionario_RG" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="Funcionario_DtNascimento" class="control-label"></label>
+                <input asp-for="Funcionario_DtNascimento" type="date" class="form-control" />
+                <span asp-validation-for="Funcionario_DtNascimento" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="Funcionario_Telefone" class="control-label"></label>
+                <input asp-for="Funcionario_Telefone" class="form-control" />
+                <span asp-validation-for="Funcionario_Telefone" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="Funcionario_Celular" class="control-label"></label>
+                <input asp-for="Funcionario_Celular" class="form-control" />
+                <span asp-validation-for="Funcionario_Celular" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Endereco_Logradouro" class="control-label"></label>
+                <input asp-for="Endereco_Logradouro" class="form-control" />
+                <span asp-validation-for="Endereco_Logradouro" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-1">
+            <div class="form-group">
+                <label asp-for="Endereco_Numero" class="control-label"></label>
+                <input asp-for="Endereco_Numero" class="form-control" />
+                <span asp-validation-for="Endereco_Numero" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Endereco_Bairro" class="control-label"></label>
+                <input asp-for="Endereco_Bairro" class="form-control" />
+                <span asp-validation-for="Endereco_Bairro" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label asp-for="Endereco_Complemento" class="control-label"></label>
+                <input asp-for="Endereco_Complemento" class="form-control" />
+                <span asp-validation-for="Endereco_Complemento" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Endereco_Cidade" class="control-label"></label>
+                <input asp-for="Endereco_Cidade" class="form-control" />
+                <span asp-validation-for="Endereco_Cidade" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-1">
+            <div class="form-group">
+                <label asp-for="Endereco_Estado" class="control-label"></label>
+                <input asp-for="Endereco_Estado" class="form-control" />
+                <span asp-validation-for="Endereco_Estado" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Endereco_CEP" class="control-label"></label>
+                <input asp-for="Endereco_CEP" class="form-control" />
+                <span asp-validation-for="Endereco_CEP" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Funcionario_Email" class="control-label"></label>
+                <input asp-for="Funcionario_Email" class="form-control" />
+                <span asp-validation-for="Funcionario_Email" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="FuncionarioDtAdmissao" class="control-label"></label>
+                <input asp-for="FuncionarioDtAdmissao" type="date" class="form-control" />
+                <span asp-validation-for="FuncionarioDtAdmissao" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Cargo_Id" class="control-label"></label>
+                <select asp-for="Cargo_Id" class="form-control" asp-items="@(new SelectList(ViewBag.CargoList, "Cargo_Id", "Cargo_Desc"))"></select>
+                <span asp-validation-for="Cargo_Id" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Estabelecimento_Id" class="control-label"></label>
+                <select asp-for="Estabelecimento_Id" class="form-control" asp-items="@(new SelectList(ViewBag.EstabelecimentoList, "Estabelecimento_Id", "Estabelecimento_Nome"))"></select>
+                <span asp-validation-for="Estabelecimento_Id" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Usuario_Id" class="control-label"></label>
+                <select asp-for="Usuario_Id" class="form-control" asp-items="@(new SelectList(ViewBag.UsuarioList, "Usuario_Id", "Usuario_Login"))"></select>
+                <span asp-validation-for="Usuario_Id" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

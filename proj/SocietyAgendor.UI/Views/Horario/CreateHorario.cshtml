@@ -1,0 +1,58 @@
+﻿@model SocietyAgendor.UI.Models.HorarioModel
+
+@{
+    ViewData["Title"] = "Horário";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+}
+
+<h2>CreateHorario</h2>
+
+<h4>HorarioModel</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateHorario" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Horario_De" class="control-label"></label>
+                <input asp-for="Horario_De" class="form-control" type="time" />
+                <span asp-validation-for="Horario_De" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Horario_Ate" class="control-label"></label>
+                <input asp-for="Horario_Ate" class="form-control" type="time" />
+                <span asp-validation-for="Horario_Ate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="DiaSemana_Id" class="control-label"></label>*@
+                <label class="control-label">Dia da Semana</label>
+                @*<input asp-for="DiaSemana_Id" class="form-control" />*@
+                <select name="DiaSemana_Id" required>
+                    <option value="-1">Selecione um dia da semana...</option>
+                    <option value="1">Domingo</option>
+                    <option value="2">Segunda-Feira</option>
+                    <option value="3">Terça-Feira</option>
+                    <option value="4">Quarta-Feira</option>
+                    <option value="5">Quinta-Feira</option>
+                    <option value="6">Sexta-Feira</option>
+                    <option value="7">Sábado</option>
+                </select>
+                <span asp-validation-for="DiaSemana_Id" class="text-danger"></span>
+
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <input type="submit" value="Inserir" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-danger">Cancelar</a>
+    </div>
+</div>
+
+@section scripts
+    {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

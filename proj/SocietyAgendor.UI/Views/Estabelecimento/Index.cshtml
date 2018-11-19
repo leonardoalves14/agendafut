@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SocietyAgendor.UI.Models.EstabelecimentoModel>
+
+@{
+    ViewData["Title"] = "Estabelecimento";
+    Layout = "_LayoutLogado";
+}
+
+
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading text-center">
+        <h2> Estabelecimento</h2>
+        <p>
+            <a asp-controller="Estabelecimento" asp-action="EditEstab" class="btn btn-default">Adicionar Estabeleciemnto</a>
+        </p>
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 150px;"></th>
+                <th style="width: 80px;">
+                    @Html.DisplayNameFor(model => model.Estabelecimento_Nome)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Editar", "EditEstab", new { /* id=item.PrimaryKey */ })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estabelecimento_Nome)
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
