@@ -1,0 +1,26 @@
+﻿@model SocietyAgendor.UI.Models.AgendamentoModel
+
+@{
+    ViewData["Title"] = "Agendamento";
+    Layout = "_LayoutLogado";
+}
+
+<h2>Deseja realmente cancelar o agendamento?</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Agendamento" asp-action="DeleteAgendamento" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.Agendamento_Id)
+
+            <div class="form-group">
+                <input type="submit" value="Sim" class="btn btn-danger" />
+                <a asp-action="Index" class="btn btn-default">Não</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

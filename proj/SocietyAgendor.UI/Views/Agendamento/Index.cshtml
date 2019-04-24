@@ -1,6 +1,71 @@
-﻿
+﻿@model IEnumerable<SocietyAgendor.UI.Models.AgendamentoModel>
+
 @{
     ViewData["Title"] = "Agendamento";
     Layout = "_LayoutLogado";
 }
 
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading text-center">
+        <h2>Agendamentos</h2>
+        <p>
+            <a asp-controller="Agendamento" asp-action="CreateAgendamento" class="btn btn-default">Novo Agendamento</a>
+        </p>
+    </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Agendamento_Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataAgendamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaSemana_Desc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Horario_Desc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente_Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estabelecimento_Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Agendamento_Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataAgendamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaSemana_Desc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Horario_Desc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente_Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estabelecimento_Nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "UpdateAgendamento", new { agId = item.Agendamento_Id }) |
+                    @Html.ActionLink("Excluir", "DeleteAgendamento", new { agId = item.Agendamento_Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

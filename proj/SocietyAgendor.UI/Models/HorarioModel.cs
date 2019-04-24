@@ -21,4 +21,10 @@ namespace SocietyAgendor.UI.Models
         [Display(Name = "Dia da Semana")]
         public string DiaSemana_Desc { get; set; }
     }
+
+    public class HorariosDisponivelModel
+    {
+        public int Horario_Id { get; set; }
+        public string Horario_Desc { get; set; }
+    }
 }

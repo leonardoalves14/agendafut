@@ -15,6 +15,7 @@ namespace SocietyAgendor.UI.Controllers
             _estabelecimentoService = estabelecimentoService;
         }
 
+        //puxando view de edição de estabelecimento
         public IActionResult EditEstab()
         {
             return View();

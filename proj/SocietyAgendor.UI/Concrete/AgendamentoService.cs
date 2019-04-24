@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SocietyAgendor.UI.Models;
 using SocietyAgendor.UI.Service;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -12,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace SocietyAgendor.UI.Concrete
 {
-    public class HorarioService : IHorarioService
+    public class AgendamentoService : IAgendamentoService
     {
         private static readonly HttpClient client = new HttpClient();
-        private const string URL = "http://socityagendorservice.azurewebsites.net/api/horarios";
+        private const string URL = "http://socityagendorservice.azurewebsites.net/api/agendamentos";
 
-        public async Task<List<HorarioModel>> GetHorariosAsync()
+        public async Task<List<AgendamentoModel>> GetAgendamentosAsync()
         {
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var horarios = new List<HorarioModel>();
+            var agendamentos = new List<AgendamentoModel>();
 
             var resposta = await client.GetAsync(URL).ConfigureAwait(false);
 
@@ -29,39 +28,18 @@ namespace SocietyAgendor.UI.Concrete
             {
                 using (var respostaStream = await resposta.Content.ReadAsStreamAsync().ConfigureAwait(false))
                 {
-                    return JsonConvert.DeserializeObject<List<HorarioModel>>(
+                    return JsonConvert.DeserializeObject<List<AgendamentoModel>>(
                         await new StreamReader(respostaStream).
                         ReadToEndAsync().ConfigureAwait(false));
                 }
             }
 
-            return horarios;
-        }
-        public async Task<List<HorariosDisponivelModel>> GetHorariosDisponiveisAsync(DateTime dia)
-        {
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var horarios = new List<HorariosDisponivelModel>();
-            string urlFinal = $"{URL}/disponiveis/{dia.ToString("yyyy-MM-dd")}";
-
-            var resposta = await client.GetAsync(urlFinal).ConfigureAwait(false);
-
-            if (resposta.IsSuccessStatusCode)
-            {
-                using (var respostaStream = await resposta.Content.ReadAsStreamAsync().ConfigureAwait(false))
-                {
-                    return JsonConvert.DeserializeObject<List<HorariosDisponivelModel>>(
-                        await new StreamReader(respostaStream).
-                        ReadToEndAsync().ConfigureAwait(false));
-                }
-            }
-
-            return horarios;
+            return agendamentos;
         }
 
-        public async Task<HorarioModel> CreateHorarioAsync(HorarioModel model)
+        public async Task<AgendamentoModel> CreateAgendamentoAsync(AgendamentoModel model)
         {
-            var horario = new HorarioModel();
+            var agendamento = new AgendamentoModel();
 
             HttpResponseMessage response = await client.PostAsync(
                 URL,
@@ -72,28 +50,28 @@ namespace SocietyAgendor.UI.Concrete
             {
                 using (var respostaStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
                 {
-                    return JsonConvert.DeserializeObject<HorarioModel>(
+                    return JsonConvert.DeserializeObject<AgendamentoModel>(
                         await new StreamReader(respostaStream).
                         ReadToEndAsync().ConfigureAwait(false));
                 }
             }
 
-            return horario;
+            return agendamento;
         }
 
-        public async Task<HttpStatusCode> UpdateHorarioAsync(HorarioModel model)
+        public async Task<HttpStatusCode> UpdateAgendamentoAsync(AgendamentoModel model)
         {
             HttpResponseMessage response = await client.PutAsync(
-                $"{URL}/{model.DiaSemana_Id}",
+                $"{URL}/{model.Agendamento_Id}",
                 new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
 
             return response.StatusCode;
         }
 
-        public async Task<HttpStatusCode> DeleteHorarioAsync(int horarioId)
+        public async Task<HttpStatusCode> DeleteAgendamentoAsync(int agendamentoId)
         {
-            HttpResponseMessage response = await client.DeleteAsync($"{URL}/{horarioId}");
+            HttpResponseMessage response = await client.DeleteAsync($"{URL}/{agendamentoId}");
 
             response.EnsureSuccessStatusCode();
             return response.StatusCode;

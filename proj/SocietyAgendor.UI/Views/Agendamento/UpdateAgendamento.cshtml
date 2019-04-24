@@ -1,0 +1,137 @@
+﻿@model SocietyAgendor.UI.Models.AgendamentoModel
+
+@{
+    ViewData["Title"] = "Editar Agendamento";
+    Layout = "_LayoutLogado";
+}
+
+<div>
+    <form asp-controller="Agendamento" asp-action="UpdateAgendamento" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="Agendamento_Id" class="form-control" type="hidden" />
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Agendamento_Descricao" class="control-label"></label>
+                    <input asp-for="Agendamento_Descricao" class="form-control" />
+                    <span asp-validation-for="Agendamento_Descricao" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Cliente_Id" class="control-label"></label>
+                    <select asp-for="Cliente_Id" class="form-control" asp-items="@ViewBag.ClientesList"></select>
+                    <span asp-validation-for="Cliente_Id" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Estabelecimento_Id" class="control-label"></label>
+                    <select asp-for="Estabelecimento_Id" class="form-control" asp-items="@ViewBag.EstabelecimentosList"></select>
+                    <span asp-validation-for="Estabelecimento_Id" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label asp-for="DataAgendamento" class="control-label"></label>
+                    <input asp-for="DataAgendamento" type="date" class="form-control" min='@DateTime.Now.ToString("yyyy-MM-dd")' />
+                    <span asp-validation-for="DataAgendamento" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Horário atual do agendamento</label>
+                    <input asp-for="Horario_Desc" class="form-control" disabled />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Horario_Id" class="control-label">Trocar Horário</label>
+                    <select asp-for="Horario_Id" class="form-control" asp-items="@ViewBag.HorariosDisponiveisList" required>
+                        <option value="-1">Selecione um horário...</option>
+                    </select>
+                    <span asp-validation-for="Horario_Id" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <a asp-action="Index" class="btn btn-default">Cancelar</a>
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="myModal" class="my__modal">
+    <!-- Modal content -->
+    <div class="my__modalContent">
+        <div class="final__spinner-1"></div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.querySelector("#DataAgendamento").addEventListener("change", dataAgendamentoChange);
+
+            function dataAgendamentoChange(event) {
+                var modal = document.getElementById('myModal');
+                modal.style.display = "block";
+
+                const dataEscolhida = event.target.value;
+                const horarioElement = document.getElementById('Horario_Id');
+
+                if (horarioElement.length > 1) {
+                    for (var i = horarioElement.length - 1; i > 0; i--) {
+                        horarioElement.options[i].remove(i);
+                    }
+                }
+
+                fetch("../Agendamento/GetHorariosDisponiveisListAsync?dia=" + dataEscolhida,
+                    {
+                        method: 'GET'
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw Error(response.statusText);
+                        }
+
+                        return response.json();
+                    })
+                    .then(result => {
+                        result.forEach((cur) => {
+                            var opt = document.createElement("option");
+                            opt.value = cur.value;
+                            opt.text = cur.text;
+
+                            horarioElement.add(opt);
+                        });
+
+                        horarioElement.disabled = false;
+                        modal.style.display = "none";
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        modal.style.display = "none";
+                    });
+            }
+        });
+    </script>
+}
