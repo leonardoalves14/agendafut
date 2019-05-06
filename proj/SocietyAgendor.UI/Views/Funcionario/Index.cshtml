@@ -13,7 +13,6 @@
     <table class="table" id="tableUsers">
         <thead>
             <tr>
-                <th style="width: 150px;"></th>
                 <th style="width: 80px;">Id</th>
                 <th>@Html.DisplayNameFor(m => m.Funcionario_Nome)</th>
                 <th>@Html.DisplayNameFor(m => m.Funcionario_Telefone)</th>
@@ -21,24 +20,25 @@
                 <th>@Html.DisplayNameFor(m => m.FuncionarioDtAdmissao)</th>
                 <th>@Html.DisplayNameFor(m => m.Cargo_Desc)</th>
                 <th>@Html.DisplayNameFor(m => m.Estabelecimento_Nome)</th>
+                <th style="width: 150px;"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var func in Model)
             {
-                <tr>
-                    <td>
-                        <a asp-controller="Funcionario" asp-action="UpdateFuncionario" asp-route-funcionarioId="@func.Funcionario_Id" class="btn btn-sm btn-default editUser">Editar</a>
-                        <a class="btn btn-sm btn-danger" data-userid="@func.Funcionario_Id">Excluir</a>
-                    </td>
-                    <th>@func.Funcionario_Id</th>
-                    <td>@func.Funcionario_Nome</td>
-                    <td>@func.Funcionario_Telefone</td>
-                    <td>@func.Funcionario_Email</td>
-                    <td>@func.FuncionarioDtAdmissao.ToString("dd/MM/yyyy")</td>
-                    <td>@func.Cargo_Desc</td>
-                    <td>@func.Estabelecimento_Nome</td>
-                </tr>
+            <tr>
+                <th>@func.Funcionario_Id</th>
+                <td>@func.Funcionario_Nome</td>
+                <td>@func.Funcionario_Telefone</td>
+                <td>@func.Funcionario_Email</td>
+                <td>@func.FuncionarioDtAdmissao.ToString("dd/MM/yyyy")</td>
+                <td>@func.Cargo_Desc</td>
+                <td>@func.Estabelecimento_Nome</td>
+                <td>
+                    <a asp-controller="Funcionario" asp-action="UpdateFuncionario" asp-route-funcionarioId="@func.Funcionario_Id" class="btn btn-sm btn-default editUser">Editar</a>
+                    <a class="btn btn-sm btn-danger" data-userid="@func.Funcionario_Id">Excluir</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

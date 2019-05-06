@@ -1,0 +1,76 @@
+﻿@model SocietyAgendor.UI.Models.EstabelecimentoModel
+
+@{
+    ViewData["Title"] = "CreateEstabelecimento";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+}
+
+<h2>CreateEstabelecimento</h2>
+
+<h4>EstabelecimentoModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateEstabelecimento">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Estabelecimento_Id" class="control-label"></label>
+                <input asp-for="Estabelecimento_Id" class="form-control" />
+                <span asp-validation-for="Estabelecimento_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estabelecimento_Nome" class="control-label"></label>
+                <input asp-for="Estabelecimento_Nome" class="form-control" />
+                <span asp-validation-for="Estabelecimento_Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estabelecimento_Email" class="control-label"></label>
+                <input asp-for="Estabelecimento_Email" class="form-control" />
+                <span asp-validation-for="Estabelecimento_Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estabelecimento_Telefone" class="control-label"></label>
+                <input asp-for="Estabelecimento_Telefone" class="form-control" />
+                <span asp-validation-for="Estabelecimento_Telefone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco_Id" class="control-label"></label>
+                <input asp-for="Endereco_Id" class="form-control" />
+                <span asp-validation-for="Endereco_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco_Numero" class="control-label"></label>
+                <input asp-for="Endereco_Numero" class="form-control" />
+                <span asp-validation-for="Endereco_Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco_Logradouro" class="control-label"></label>
+                <input asp-for="Endereco_Logradouro" class="form-control" />
+                <span asp-validation-for="Endereco_Logradouro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco_Bairro" class="control-label"></label>
+                <input asp-for="Endereco_Bairro" class="form-control" />
+                <span asp-validation-for="Endereco_Bairro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco_Cidade" class="control-label"></label>
+                <input asp-for="Endereco_Cidade" class="form-control" />
+                <span asp-validation-for="Endereco_Cidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco_Estado" class="control-label"></label>
+                <input asp-for="Endereco_Estado" class="form-control" />
+                <span asp-validation-for="Endereco_Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

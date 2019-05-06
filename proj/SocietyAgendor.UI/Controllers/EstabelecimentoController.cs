@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SocietyAgendor.UI.Models;
 using SocietyAgendor.UI.Service;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SocietyAgendor.UI.Controllers
 {
@@ -37,6 +39,31 @@ namespace SocietyAgendor.UI.Controllers
             }
 
             var newFunc = await _estabelecimentoService.CreateEstabelecimentoAsync(estabelecimento);
+
+            return RedirectToAction("Index");
+        }
+
+        /* parte de update*/
+        public async Task<IActionResult> UpdateEstabelecimento(int estabelecimentoId)
+        {
+            // Pego todos os cargos
+            var estabelecimentos = await _estabelecimentoService.GetEstabelecimentoAsync();
+
+            var estab = estabelecimentos.FindIndex(e => e.Estabelecimento_Id == estabelecimentoId);
+
+            return View(estab);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateEstabelecimento(EstabelecimentoModel estabelecimento)
+        {
+            // Repensar em como fazer aqui
+            if (!ModelState.IsValid)
+            {
+                throw new Exception(ModelStateInvalidError.Message(ModelState));
+            }
+
+            await _estabelecimentoService.UpdateEstabelecimentoAsync(estabelecimento);
 
             return RedirectToAction("Index");
         }

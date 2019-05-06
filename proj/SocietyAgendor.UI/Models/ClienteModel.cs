@@ -27,6 +27,7 @@ namespace SocietyAgendor.UI.Models
 
         [Required]
         [Display(Name = "Data de Nascimento")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Cliente_DtNascimento { get; set; }
 
         [Required]

@@ -1,19 +1,16 @@
 ﻿@model SocietyAgendor.UI.Models.HorarioModel
 
 @{
-    ViewData["Title"] = "Criar Horário";
-    Layout = "_LayoutLogado";
+    ViewData["Title"] = "UpdateHorario";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
 }
 
-<h2>Criar Horário</h2>
+<h2>Atualizar Horario</h2>
 
 <hr />
-
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateHorario" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+        <form asp-action="UpdateHorario">
             <div class="form-group">
                 <label asp-for="Horario_De" class="control-label"></label>
                 <input asp-for="Horario_De" class="form-control" type="time" />
@@ -43,10 +40,10 @@
 
             <div class="row">
                 <div class="form-row">
-                    <div class="form-group col-lg-2">
-                        <input type="submit" value="Criar" class="btn btn-primary" />
+                    <div class="form-group col-lg-3">
+                        <input type="submit" value="Atualizar" class="btn btn-primary" />
                     </div>
-                    <div class="form-group col-lg-4">
+                    <div class="form-group col-lg-3">
                         <a asp-action="Index" class="btn btn-danger">Cancelar</a>
                     </div>
                 </div>
@@ -55,7 +52,3 @@
     </div>
 </div>
 
-@section scripts
-    {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-}

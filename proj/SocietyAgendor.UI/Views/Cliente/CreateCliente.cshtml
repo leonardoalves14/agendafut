@@ -55,7 +55,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Cliente_DtNascimento" class="control-label"></label>
-                    <input asp-for="Cliente_DtNascimento" class="form-control" />
+                    <input asp-for="Cliente_DtNascimento" type="date" class="form-control" min='@DateTime.Now.ToString("yyyy-MM-dd")'/>
                     <span asp-validation-for="Cliente_DtNascimento" class="text-danger"></span>
                 </div>
             </div>

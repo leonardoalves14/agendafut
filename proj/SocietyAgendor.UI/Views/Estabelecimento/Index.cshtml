@@ -20,27 +20,35 @@
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 150px;"></th>
-                <th style="width: 80px;">
+                <th style="width: 400px;">
                     @Html.DisplayNameFor(model => model.Estabelecimento_Nome)
                 </th>
-                <th></th>
+                <th style="width: 300px;">
+                    @Html.DisplayNameFor(model => model.Estabelecimento_Nome)
+                </th>
+                <th style="width: 300px;">
+                    @Html.DisplayNameFor(model => model.Estabelecimento_Telefone)
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.ActionLink("Editar", "EditEstab", new { /* id=item.PrimaryKey */ })
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estabelecimento_Nome)
-                    </td>
-                    <td>
-                        
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estabelecimento_Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estabelecimento_Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estabelecimento_Telefone)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "EditEstab", new { estabelecimentoId = item.Estabelecimento_Id }) |             
+                    @Html.ActionLink("Excluir", "", new { estabelecimentoId = item.Estabelecimento_Id }) 
+                </td>
+            </tr>
             }
         </tbody>
     </table>

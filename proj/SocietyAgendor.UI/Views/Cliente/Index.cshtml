@@ -27,6 +27,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Cliente_Email)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente_Telefone)
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -43,7 +46,10 @@
                     @Html.DisplayFor(modelItem => item.Cliente_Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Agendar", "Index", new { clienteId = item.Cliente_Id }) |
+                    @Html.DisplayFor(modelItem => item.Cliente_Telefone)
+                </td>
+                <td>
+                    @Html.ActionLink("Agendar", "CreateAgendamento", "Agendamento", new { clienteId = item.Cliente_Id }) |
                     @Html.ActionLink("Editar", "UpdateCliente", new { clienteId = item.Cliente_Id }) |
                     @Html.ActionLink("Excluir", "DeleteCliente", new { clienteId = item.Cliente_Id })
                 </td>
