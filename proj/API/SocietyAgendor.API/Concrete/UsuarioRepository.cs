@@ -64,5 +64,13 @@ namespace SocietyAgendor.API.Concrete
 
             return usuario.Exists(x => x.UsuarioId != null);
         }
+
+        public void ResetUserPassword(int usuarioId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Usuario_Id", usuarioId, System.Data.DbType.Int32);
+
+            ExecuteSP("reset_user_password", parameters);
+        }
     }
 }

@@ -3,6 +3,7 @@ using SocietyAgendor.API.Entities;
 using SocietyAgendor.API.Models;
 using SocietyAgendor.API.Services;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SocietyAgendor.API.Controllers
 {
@@ -122,6 +123,19 @@ namespace SocietyAgendor.API.Controllers
                 return Ok();
             else
                 return NotFound();
+        }
+
+        [HttpPost("resetpassword")]
+        public IActionResult ResetUserPassword([FromBody] int usuarioId)
+        {
+            var user = _usuarioRepository.GetAllUsuarios().Where(u => u.UsuarioId == usuarioId).FirstOrDefault();
+
+            if (user == null)
+                return NotFound();
+
+            _usuarioRepository.ResetUserPassword(usuarioId);
+
+            return Ok();
         }
     }
 }
