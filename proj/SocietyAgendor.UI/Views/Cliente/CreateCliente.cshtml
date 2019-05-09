@@ -55,7 +55,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Cliente_DtNascimento" class="control-label"></label>
-                    <input asp-for="Cliente_DtNascimento" type="date" class="form-control" min='@DateTime.Now.ToString("yyyy-MM-dd")'/>
+                    <input asp-for="Cliente_DtNascimento" type="date" class="form-control" max='@DateTime.Now.ToString("yyyy-MM-dd")'/>
                     <span asp-validation-for="Cliente_DtNascimento" class="text-danger"></span>
                 </div>
             </div>
@@ -142,6 +142,7 @@
             </div>
 
         </div>
+
         @* Botões *@
         <div class="row">
             <div class="form-row">
@@ -153,6 +154,7 @@
                 <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </div>
+
     </form>
 </div>
 

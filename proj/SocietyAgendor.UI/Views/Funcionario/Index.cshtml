@@ -26,24 +26,45 @@
         <tbody>
             @foreach (var func in Model)
             {
-            <tr>
-                <th>@func.Funcionario_Id</th>
-                <td>@func.Funcionario_Nome</td>
-                <td>@func.Funcionario_Telefone</td>
-                <td>@func.Funcionario_Email</td>
-                <td>@func.FuncionarioDtAdmissao.ToString("dd/MM/yyyy")</td>
-                <td>@func.Cargo_Desc</td>
-                <td>@func.Estabelecimento_Nome</td>
-                <td>
-                    <a asp-controller="Funcionario" asp-action="UpdateFuncionario" asp-route-funcionarioId="@func.Funcionario_Id" class="btn btn-sm btn-default editUser">Editar</a>
-                    <a class="btn btn-sm btn-danger" data-userid="@func.Funcionario_Id">Excluir</a>
-                </td>
-            </tr>
+                <tr>
+                    <th>@func.Funcionario_Id</th>
+                    <td>@func.Funcionario_Nome</td>
+                    <td>@func.Funcionario_Telefone</td>
+                    <td>@func.Funcionario_Email</td>
+                    <td>@func.FuncionarioDtAdmissao.ToString("dd/MM/yyyy")</td>
+                    <td>@func.Cargo_Desc</td>
+                    <td>@func.Estabelecimento_Nome</td>
+                    <td>
+                        <a asp-controller="Funcionario" asp-action="UpdateFuncionario" asp-route-funcionarioId="@func.Funcionario_Id" class="btn btn-sm btn-default editUser">Editar</a>
+                        <a class="btn btn-sm btn-danger" data-userid="@func.Funcionario_Id">Excluir</a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
 </div>
 
 @section scripts{
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script>
+        $("#btnNovoFuncionario").on('click', function () {
+            event.preventDefault();
+
+            $.ajax({
+                type: "GET",
+                url: "/Funcionario/FuncionarioAdd",
+                async: true,
+                cache: false,
+                success: function (response) {
+                    $('#exampleModalFunc').html(response);
+                    $('#exampleModalFunc').modal('show');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    </script>
 }

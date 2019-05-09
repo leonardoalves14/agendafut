@@ -18,7 +18,7 @@ namespace SocietyAgendor.UI.Controllers
         }
 
         //puxando view de edição de estabelecimento
-        public IActionResult EditEstab()
+        public IActionResult CreateEstabelecimento()
         {
             return View();
         }
@@ -30,6 +30,24 @@ namespace SocietyAgendor.UI.Controllers
             return View(estabelecimentos);
         }
 
+        public IActionResult CreateEstabelecimentoTest()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EstabalecimentoAddTest(EstabelecimentoModel estabelecimento)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new Exception(ModelStateInvalidError.Message(ModelState));
+            }
+
+            var newEstab = await _estabelecimentoService.CreateEstabelecimentoAsync(estabelecimento);
+
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public async Task<IActionResult> EstabalecimentoAdd(EstabelecimentoModel estabelecimento)
         {
@@ -38,7 +56,7 @@ namespace SocietyAgendor.UI.Controllers
                 throw new Exception(ModelStateInvalidError.Message(ModelState));
             }
 
-            var newFunc = await _estabelecimentoService.CreateEstabelecimentoAsync(estabelecimento);
+            var newEstab = await _estabelecimentoService.CreateEstabelecimentoAsync(estabelecimento);
 
             return RedirectToAction("Index");
         }

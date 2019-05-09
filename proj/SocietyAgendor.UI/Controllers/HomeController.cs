@@ -57,7 +57,7 @@ namespace SocietyAgendor.UI.Controllers
             var user = new UsuarioModel
             {
                 Usuario_Login = model.User,
-                Usuario_Senha = CryptoService.EncryptPlainTextToCipherText(model.Password)
+                Usuario_Senha = model.Password
             };
 
             var respose = await _usuarioService.LoginUsuarioAsync(user);

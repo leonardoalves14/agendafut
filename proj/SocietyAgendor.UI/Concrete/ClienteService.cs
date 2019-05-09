@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SocietyAgendor.UI.Models;
 using SocietyAgendor.UI.Service;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SocietyAgendor.UI.Concrete
 {
-    public class ClienteService: IClienteService
+    public class ClienteService : IClienteService
     {
         private static readonly HttpClient client = new HttpClient();
         private const string URL = "http://socityagendorservice.azurewebsites.net/api/clientes";
@@ -62,8 +63,8 @@ namespace SocietyAgendor.UI.Concrete
         public async Task<HttpStatusCode> UpdateClientesAsync(ClienteModel model)
         {
             HttpResponseMessage response = await client.PutAsync(
-                $"{URL}/{model.Cliente_Id}",
-                new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"));
+            $"{URL}/{model.Cliente_Id}",
+            new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
 
             return response.StatusCode;
