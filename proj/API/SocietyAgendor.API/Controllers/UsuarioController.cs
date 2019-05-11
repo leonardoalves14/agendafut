@@ -126,14 +126,14 @@ namespace SocietyAgendor.API.Controllers
         }
 
         [HttpPost("resetpassword")]
-        public IActionResult ResetUserPassword([FromBody] int usuarioId)
+        public IActionResult ResetUserPassword([FromBody] UsuarioModel model)
         {
-            var user = _usuarioRepository.GetAllUsuarios().Where(u => u.UsuarioId == usuarioId).FirstOrDefault();
+            var user = _usuarioRepository.GetAllUsuarios().Where(u => u.UsuarioId == model.Usuario_Id).FirstOrDefault();
 
             if (user == null)
                 return NotFound();
 
-            _usuarioRepository.ResetUserPassword(usuarioId);
+            _usuarioRepository.ResetUserPassword((int)model.Usuario_Id);
 
             return Ok();
         }
