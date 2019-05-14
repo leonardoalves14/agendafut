@@ -4,6 +4,7 @@ using SocietyAgendor.API.Entities;
 using SocietyAgendor.API.Services;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SocietyAgendor.API.Concrete
 {
@@ -14,6 +15,16 @@ namespace SocietyAgendor.API.Concrete
         public List<Funcionario> GetAllFuncionarios()
         {
             return ExecuteSP<Funcionario>("spsFuncionario");
+        }
+
+        public async Task<Funcionario> GetFuncionarioByUsuarioId(int usuarioId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Usuario_Id", usuarioId, System.Data.DbType.Int32);
+
+            var result = await GetFirstOrDefault<Funcionario>("spsUsuarioFuncionario", parameters);
+
+            return result;
         }
 
         public Funcionario CreateFuncionario(Funcionario model)

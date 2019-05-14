@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Transactions;
 
 namespace SocietyAgendor.API.Base
@@ -75,6 +76,25 @@ namespace SocietyAgendor.API.Base
             }
 
             return ret;
+        }
+
+        public async Task<T> GetFirstOrDefault<T>(string storedProcedure, DynamicParameters parameters = null) where T : class, new()
+        {
+            T result = new T();
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                if (parameters != null)
+                    result = await sqlConnection.QueryFirstOrDefaultAsync<T>(storedProcedure, parameters, commandType: System.Data.CommandType.StoredProcedure);
+                else
+                    result = await sqlConnection.QueryFirstOrDefaultAsync<T>(storedProcedure, commandType: System.Data.CommandType.StoredProcedure);
+
+                sqlConnection.Close();
+            }
+
+            return result;
         }
 
         public void Dispose()

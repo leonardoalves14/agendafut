@@ -3,6 +3,7 @@ using SocietyAgendor.API.Entities;
 using SocietyAgendor.API.Models;
 using SocietyAgendor.API.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SocietyAgendor.API.Controllers
 {
@@ -148,6 +149,26 @@ namespace SocietyAgendor.API.Controllers
             _funcionarioRepository.DeleteFuncionario(funcionarioId);
 
             return NoContent();
+        }
+
+        [HttpGet("usuario/{usuarioId}")]
+        public async Task<IActionResult> GetFuncionarioByUserId(int usuarioId)
+        {
+            PerfilFuncionarioModel result = new PerfilFuncionarioModel();
+            Funcionario funcionario = await _funcionarioRepository.GetFuncionarioByUsuarioId(usuarioId);
+
+            if (funcionario == null)
+                return NotFound();
+
+            result.Funcionario_Nome = funcionario.FuncionarioNome;
+            result.Funcionario_CPF = funcionario.FuncionarioCPF;
+            result.Funcionario_RG = funcionario.FuncionarioRG;
+            result.Funcionario_DtNascimento = funcionario.FuncionarioDtNascimento;
+            result.Cargo_Desc = funcionario.CargoDesc;
+            result.Estabelecimento_Nome = funcionario.EstabelecimentoNome;
+            result.Usuario_Login = funcionario.UsuarioLogin;
+
+            return Ok(result);
         }
     }
 }
