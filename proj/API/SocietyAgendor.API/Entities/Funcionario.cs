@@ -4,28 +4,28 @@ namespace SocietyAgendor.API.Entities
 {
     public class Funcionario
     {
-        public int? FuncionarioId { get; set; }
-        public string FuncionarioNome { get; set; }
-        public string FuncionarioCPF { get; set; }
-        public string FuncionarioRG { get; set; }
-        public DateTime FuncionarioDtNascimento { get; set; }
-        public string FuncionarioCelular { get; set; }
-        public string FuncionarioEmail { get; set; }
-        public string FuncionarioTelefone { get; set; }
+        public int? Funcionario_Id { get; set; }
+        public string Funcionario_Nome { get; set; }
+        public string Funcionario_CPF { get; set; }
+        public string Funcionario_RG { get; set; }
+        public DateTime Funcionario_DtNascimento { get; set; }
+        public string Funcionario_Celular { get; set; }
+        public string Funcionario_Email { get; set; }
+        public string Funcionario_Telefone { get; set; }
         public DateTime FuncionarioDtAdmissao { get; set; }
-        public int? EnderecoId { get; set; }
-        public string EnderecoNumero { get; set; }
-        public string EnderecoLogradouro { get; set; }
-        public string EnderecoBairro { get; set; }
-        public string EnderecoCidade { get; set; }
-        public string EnderecoEstado { get; set; }
-        public string EnderecoComplemento { get; set; }
-        public string EnderecoCEP { get; set; }
-        public int? CargoId { get; set; }
-        public string CargoDesc { get; set; }
-        public int? EstabelecimentoId { get; set; }
-        public string EstabelecimentoNome { get; set; }
-        public int? UsuarioId { get; set; }
-        public string UsuarioLogin { get; set; }
+        public int? Endereco_Id { get; set; }
+        public string Endereco_Numero { get; set; }
+        public string Endereco_Logradouro { get; set; }
+        public string Endereco_Bairro { get; set; }
+        public string Endereco_Cidade { get; set; }
+        public string Endereco_Estado { get; set; }
+        public string Endereco_Complemento { get; set; }
+        public string Endereco_CEP { get; set; }
+        public int? Cargo_Id { get; set; }
+        public string Cargo_Desc { get; set; }
+        public int? Estabelecimento_Id { get; set; }
+        public string Estabelecimento_Nome { get; set; }
+        public int? Usuario_Id { get; set; }
+        public string Usuario_Login { get; set; }
     }
 }
