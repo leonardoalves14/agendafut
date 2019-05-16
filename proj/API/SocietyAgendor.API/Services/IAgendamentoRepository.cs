@@ -6,7 +6,7 @@ namespace SocietyAgendor.API.Services
     public interface IAgendamentoRepository
     {
         List<Agendamento> GetAllAgendamentos();
-        Agendamento CreateAgendamento(Agendamento model);
+        int CreateAgendamento(Agendamento model);
         void UpdateAgendamento(Agendamento model);
         void DeleteAgendamento(int agendamentoId);
     }

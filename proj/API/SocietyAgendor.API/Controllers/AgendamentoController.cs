@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using SocietyAgendor.API.Entities;
 using SocietyAgendor.API.Models;
 using SocietyAgendor.API.Services;
@@ -12,36 +13,18 @@ namespace SocietyAgendor.API.Controllers
     public class AgendamentoController : Controller
     {
         private readonly IAgendamentoRepository _agendamentoRepository;
+        private readonly IMapper _mapper;
 
-        public AgendamentoController(IAgendamentoRepository agendamentoRepository)
+        public AgendamentoController(IAgendamentoRepository agendamentoRepository, IMapper mapper)
         {
             _agendamentoRepository = agendamentoRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAllAgendamentos()
         {
-            List<AgendamentoModel> result = new List<AgendamentoModel>();
-            List<Agendamento> list = _agendamentoRepository.GetAllAgendamentos();
-
-            foreach (var agendamento in list)
-            {
-                result.Add(new AgendamentoModel
-                {
-                    Agendamento_Id = agendamento.AgendamentoId,
-                    Agendamento_Descricao = agendamento.AgendamentoDescricao,
-                    DataAgendamento = agendamento.DataAgendamento,
-                    DiaSemana_Id = agendamento.DiaSemanaId,
-                    DiaSemana_Desc = agendamento.DiaSemanaDesc,
-                    Horario_Id = agendamento.HorarioId,
-                    Horario_Desc = agendamento.HorarioDesc,
-                    Cliente_Id = agendamento.ClienteId,
-                    Cliente_Nome = agendamento.ClienteNome,
-                    Estabelecimento_Id = agendamento.EstabelecimentoId,
-                    Estabelecimento_Nome = agendamento.EstabelecimentoNome
-                });
-            }
-
+            var result = _mapper.Map<IEnumerable<AgendamentoModel>>(_agendamentoRepository.GetAllAgendamentos());
             return Ok(result);
         }
 
@@ -49,22 +32,10 @@ namespace SocietyAgendor.API.Controllers
         public IActionResult CreateAgendamento([FromBody] AgendamentoModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            Agendamento agendamento = new Agendamento
-            {
-                AgendamentoDescricao = model.Agendamento_Descricao,
-                ClienteId = model.Cliente_Id,
-                EstabelecimentoId = model.Estabelecimento_Id,
-                DataAgendamento = model.DataAgendamento,
-                HorarioId = model.Horario_Id,
-                DiaSemanaId = model.DiaSemana_Id
-            };
-
-            Agendamento newAgendamento = _agendamentoRepository.CreateAgendamento(agendamento);
-            model.Agendamento_Id = newAgendamento.AgendamentoId;
+            var agendamento = _mapper.Map<Agendamento>(model);
+            model.Agendamento_Id = _agendamentoRepository.CreateAgendamento(agendamento);
 
             return Ok(model);
         }
@@ -73,19 +44,9 @@ namespace SocietyAgendor.API.Controllers
         public IActionResult UpdateAgendamento(int agendamentoId, [FromBody] AgendamentoModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            Agendamento agendamento = new Agendamento
-            {
-                AgendamentoId = model.Agendamento_Id,
-                AgendamentoDescricao = model.Agendamento_Descricao,
-                DataAgendamento = model.DataAgendamento,
-                HorarioId = model.Horario_Id,
-                DiaSemanaId = model.DiaSemana_Id
-            };
-
+            var agendamento = _mapper.Map<Agendamento>(model);
             _agendamentoRepository.UpdateAgendamento(agendamento);
 
             return Ok(model);

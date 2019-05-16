@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SocietyAgendor.API.Concrete;
 using SocietyAgendor.API.Services;
+using System.Reflection;
 
 namespace SocietyAgendor.API
 {
@@ -28,6 +30,8 @@ namespace SocietyAgendor.API
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IAgendamentoRepository, AgendamentoRepository>();
             services.AddTransient<IDiaSemanaRepository, DiaSemanaRepository>();
+
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(Startup)));
 
             services.AddCors(options =>
             {
