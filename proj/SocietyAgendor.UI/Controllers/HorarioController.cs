@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,6 +23,7 @@ namespace SocietyAgendor.UI.Controllers
         public async Task<IActionResult> Index()
         {
             var horarios = await _horarioService.GetHorariosAsync();
+
 
             return View(horarios);
         }
@@ -49,19 +51,11 @@ namespace SocietyAgendor.UI.Controllers
             var horarios = await _horarioService.GetHorariosAsync();
             var horario = horarios.Find(c => c.Horario_Id == horarioId);
 
-            //ViewBag.DiaSemanaList = await GetDiaSemanaListAsync();
-
             return View("UpdateHorario", horario);
+            
         }
 
-      /*  private async Task<SelectList> GetDiaSemanaListAsync()
-        {
-            var diasem = await _diaSemanaService.GetDiasDaSemanaAsync();
-            diasem.Insert(0, new ClienteModel
-            {
-                _Id =
-                }
-        }*/
+
 
         [HttpPost]
         public async Task<IActionResult> UpdateHorario(HorarioModel horario)
@@ -72,6 +66,22 @@ namespace SocietyAgendor.UI.Controllers
             }
 
             var response = await _horarioService.UpdateHorarioAsync(horario);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeleteHorario(int horarioId)
+         {
+            var horarios = await _horarioService.GetHorariosAsync();
+            var horario = horarios.Where(x => x.Horario_Id == horarioId).FirstOrDefault();
+
+            return View(horario);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteHorario(HorarioModel horario)
+        {
+            await _horarioService.DeleteHorarioAsync((int)horario.Horario_Id);
 
             return RedirectToAction("Index");
         }

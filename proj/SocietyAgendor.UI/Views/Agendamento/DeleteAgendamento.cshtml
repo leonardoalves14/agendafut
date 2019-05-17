@@ -13,10 +13,38 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(model => model.Agendamento_Id)
 
-            <div class="form-group">
-                <a asp-action="Index" class="btn btn-default">Não</a>
-                <input type="submit" value="Sim" class="btn btn-danger" />
+            <dl class="dl-horizontal">
 
+                <dt>
+                    @Html.DisplayNameFor(model => model.Cliente_Nome)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Cliente_Nome)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Agendamento_Descricao)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Agendamento_Descricao)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DataAgendamento)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DataAgendamento)
+                </dd>
+
+            </dl>
+
+            <div class="row">
+                <div class="form-row">
+                    <div class="form-group col-lg-2">
+                        <a asp-action="Index" class="btn btn-danger">Não</a>
+                    </div>
+                </div>
+                <div class="form-group col-lg-1">
+                    <input type="submit" value="Sim" class="btn btn-primary" />
+                </div>
             </div>
         </form>
     </div>

@@ -17,11 +17,6 @@ namespace SocietyAgendor.UI.Controllers
             _clienteService = clienteService;
         }
 
-        public IActionResult Table()
-        {
-            return View();
-        }
-
         public async Task<IActionResult> Index()
         {
             var clientes = await _clienteService.GetClientesAsync();

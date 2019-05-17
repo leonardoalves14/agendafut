@@ -10,7 +10,7 @@ namespace SocietyAgendor.UI.Service
         Task<List<EstabelecimentoModel>> GetEstabelecimentoAsync();
         Task<EstabelecimentoModel> CreateEstabelecimentoAsync(EstabelecimentoModel model);
         Task<HttpStatusCode> UpdateEstabelecimentoAsync(EstabelecimentoModel model);
-        Task<HttpStatusCode> DeleteEstabelecimentoAsync(int usuarioId);
+        Task<HttpStatusCode> DeleteEstabelecimentoAsync(int estabelecimentoId);
         Task<dynamic> GetEstabelecimentosAsync();
     }
 }
