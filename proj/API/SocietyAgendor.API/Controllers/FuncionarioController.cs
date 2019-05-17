@@ -44,7 +44,7 @@ namespace SocietyAgendor.API.Controllers
             return Ok(model);
         }
 
-        [HttpPost("{funcionarioId}")]
+        [HttpPut("{funcionarioId}")]
         public IActionResult UpdateFuncionario(int funcionarioId, [FromBody] FuncionarioModel model)
         {
             if (!ModelState.IsValid)
