@@ -1,20 +1,15 @@
 ﻿@model SocietyAgendor.UI.Models.FuncionarioModel
 
 @{
-    ViewData["Title"] = "Funcionário";
-    Layout = "_LayoutLogado";
-
+    ViewData["Title"] = "CreateFuncionario";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
 }
 
-<h2>Atualizar Funcionário</h2>
+<h2>Criar Funcionario</h2>
+
 <hr />
-
 <div>
-    <form asp-action="UpdateFuncionario" method="post">
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(m => m.Funcionario_Id)
-        @Html.HiddenFor(m => m.Endereco_Id)
-
+    <form asp-action="FuncionarioAdd">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="row">
@@ -162,15 +157,13 @@
         </div>
 
         <div class="row">
-            <div class="row">
-                <div class="form-row">
-                    <div class="form-group col-lg-1">
-                        <a asp-action="Index" class="btn btn-danger">Cancelar</a>
-                    </div>
-                </div>
+            <div class="form-row">
                 <div class="form-group col-lg-1">
-                    <input type="submit" value="Criar" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-danger">Cancelar</a>
                 </div>
+            </div>
+            <div class="form-group col-lg-1">
+                <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </div>
     </form>
@@ -179,3 +172,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

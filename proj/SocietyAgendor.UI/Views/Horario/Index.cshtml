@@ -45,9 +45,8 @@
                         @Html.DisplayFor(modelItem => item.Horario_Ate)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "UpdateHorario", new { horarioId = item.Horario_Id }) |
-                        @Html.ActionLink("Detalhes", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Excluir", "Delete", new { /* id=item.PrimaryKey */ })
+                        @Html.ActionLink("Editar", "UpdateHorario", new { horarioId = item.Horario_Id, diaSemanaId = item.DiaSemana_Id  }) |
+                        @Html.ActionLink("Excluir", "DeleteHorario", new { horarioId = item.Horario_Id, diaSemanaId = item.DiaSemana_Id })
                     </td>
                 </tr>
             }

@@ -5,21 +5,43 @@
     Layout = "_LayoutLogado";
 }
 
-<h2>Deseja realmente excluir este registro?</h2>
+<h2>Excluir Cliente</h2>
+
+<h3>Deseja realmente excluir este registro?</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="DeleteCliente">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(model => model.Cliente_Id)
-            <h4>Nome:</h4>
-            @Html.DisplayFor(model => model.Cliente_Nome) <br />
-            <h4>CPF:</h4>
-            @Html.DisplayFor(model => model.Cliente_CPF) <br /><br />
 
-            <div class="form-group">
-                <input type="submit" value="Sim" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-danger">Não</a>
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Cliente_Nome)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Cliente_Nome)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Cliente_CPF)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Cliente_CPF)
+                </dd>
+               
+
+            </dl>
+
+            <div class="row">
+                <div class="form-row">
+                    <div class="form-group col-lg-2">
+                        <a asp-action="Index" class="btn btn-danger">Não</a>
+                    </div>
+                </div>
+                <div class="form-group col-lg-1">
+                    <input type="submit" value="Sim" class="btn btn-primary" />
+                </div>
             </div>
         </form>
     </div>

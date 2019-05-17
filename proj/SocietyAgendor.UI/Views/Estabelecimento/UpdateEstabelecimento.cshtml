@@ -1,16 +1,18 @@
 ﻿@model SocietyAgendor.UI.Models.EstabelecimentoModel
 
 @{
-    ViewData["Title"] = "Criar Estabelecimento";
+    ViewData["Title"] = "Editar Estabelecimento";
     Layout = "_LayoutLogado";
 }
 
-<h2>Criar Estabelecimento</h2>
+<h2>Editar Estabelecimento</h2>
 
 <hr />
-<div>
-    <form asp-action="EstabalecimentoAdd">
+<div class="row">
+    <form asp-action="UpdateEstabelecimento">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="Estabelecimento_Id" class="form-control" type="hidden" />
+        <input asp-for="Endereco_Id" class="form-control" type="hidden" />
 
         <div class="row">
             <div class="form-row">
@@ -126,7 +128,7 @@
                 </div>
             </div>
             <div class="form-group col-lg-1">
-                <input type="submit" value="Criar" class="btn btn-primary" />
+                <input type="submit" value="Atualizar" class="btn btn-primary" />
             </div>
         </div>
     </form>

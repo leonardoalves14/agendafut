@@ -22,6 +22,7 @@ namespace SocietyAgendor.UI.Models
 
         [Required]
         [Display(Name = "Data Nascimento")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Funcionario_DtNascimento { get; set; }
 
         [Required]
@@ -35,6 +36,7 @@ namespace SocietyAgendor.UI.Models
 
         [Required]
         [Display(Name = "Data Admissão")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FuncionarioDtAdmissao { get; set; }
 
         [Required]
@@ -77,21 +79,21 @@ namespace SocietyAgendor.UI.Models
         public string Endereco_CEP { get; set; }
 
         [Required]
-        [Display(Name = "Cargo")]
+        [Display(Name = "Id do Cargo")]
         public int? Cargo_Id { get; set; }
 
         [Display(Name = "Cargo")]
         public string Cargo_Desc { get; set; }
 
         [Required]
-        [Display(Name = "Estabelecimento")]
+        [Display(Name = "ID do Estabelecimento")]
         public int? Estabelecimento_Id { get; set; }
 
         [Display(Name = "Estabelecimento")]
         public string Estabelecimento_Nome { get; set; }
 
         [Required]
-        [Display(Name = "Usuário")]
+        [Display(Name = "Id do Usuário")]
         public int? Usuario_Id { get; set; }
 
         [Display(Name = "Usuário")]

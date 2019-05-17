@@ -1,0 +1,46 @@
+﻿@model SocietyAgendor.UI.Models.EstabelecimentoModel
+
+@{
+    ViewData["Title"] = "DeleteEstabelecimento";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+}
+
+<h2>Excluir Estabelecimento</h2>
+
+<h3>Tem certeza que deseja excluir esses dados?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.Estabelecimento_Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estabelecimento_Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estabelecimento_CNPJ)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estabelecimento_CNPJ)
+        </dd>
+        
+    </dl>
+    
+    <form asp-action="DeleteEstabelecimento" asp-controller="Estabelecimento" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        @Html.HiddenFor(model => model.Estabelecimento_Id)
+
+            <div class="row">
+                <div class="form-row">
+                    <div class="form-group col-md-1">
+                        <a asp-action="Index" class="btn btn-danger">Não</a>
+                    </div>
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="submit" value="Sim" class="btn btn-primary" />
+                </div>
+            </div>
+    </form>
+</div>

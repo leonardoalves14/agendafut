@@ -12,7 +12,7 @@
     <div class="panel-heading text-center">
         <h2> Estabelecimento</h2>
         <p>
-            <a asp-controller="Estabelecimento" asp-action="CreateEstabelecimentoTest" class="btn btn-default">Adicionar Estabeleciemnto</a>
+            <a asp-controller="Estabelecimento" asp-action="CreateEstabelecimento" class="btn btn-default">Adicionar Estabelecimento</a>
         </p>
     </div>
 
@@ -24,7 +24,7 @@
                     @Html.DisplayNameFor(model => model.Estabelecimento_Nome)
                 </th>
                 <th style="width: 300px;">
-                    @Html.DisplayNameFor(model => model.Estabelecimento_Nome)
+                    @Html.DisplayNameFor(model => model.Estabelecimento_Email)
                 </th>
                 <th style="width: 300px;">
                     @Html.DisplayNameFor(model => model.Estabelecimento_Telefone)
@@ -45,8 +45,8 @@
                     @Html.DisplayFor(modelItem => item.Estabelecimento_Telefone)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "EditEstab", new { estabelecimentoId = item.Estabelecimento_Id }) |             
-                    @Html.ActionLink("Excluir", "", new { estabelecimentoId = item.Estabelecimento_Id }) 
+                    @Html.ActionLink("Editar", "UpdateEstabelecimento", new { estabelecimentoId = item.Estabelecimento_Id }) |             
+                    @Html.ActionLink("Excluir", "DeleteEstabelecimento", new { estabelecimentoId = item.Estabelecimento_Id }) 
                 </td>
             </tr>
             }

@@ -46,6 +46,7 @@ namespace SocietyAgendor.UI.Concrete
                 new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"));
 
             response.EnsureSuccessStatusCode();
+
             if (response.IsSuccessStatusCode)
             {
                 using (var respostaStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))

@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_LayoutLogado.cshtml";
 }
 
+<h2>Criar Agendamento</h2>
+
+<hr />
+
 <div>
     <form asp-controller="Agendamento" asp-action="CreateAgendamento" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -58,11 +62,13 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <a asp-action="Index" class="btn btn-default">Cancelar</a>
-                    <input type="submit" value="Salvar" class="btn btn-primary" />
+            <div class="form-row">
+                <div class="form-group col-lg-1">
+                    <a asp-action="Index" class="btn btn-danger">Cancelar</a>
                 </div>
+            </div>
+            <div class="form-group col-lg-1">
+                <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </div>
     </form>

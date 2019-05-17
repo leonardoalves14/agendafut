@@ -30,24 +30,6 @@ namespace SocietyAgendor.UI.Controllers
             return View(estabelecimentos);
         }
 
-        public IActionResult CreateEstabelecimentoTest()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> EstabalecimentoAddTest(EstabelecimentoModel estabelecimento)
-        {
-            if (!ModelState.IsValid)
-            {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
-            }
-
-            var newEstab = await _estabelecimentoService.CreateEstabelecimentoAsync(estabelecimento);
-
-            return RedirectToAction("Index");
-        }
-
         [HttpPost]
         public async Task<IActionResult> EstabalecimentoAdd(EstabelecimentoModel estabelecimento)
         {
@@ -67,7 +49,7 @@ namespace SocietyAgendor.UI.Controllers
             // Pego todos os cargos
             var estabelecimentos = await _estabelecimentoService.GetEstabelecimentoAsync();
 
-            var estab = estabelecimentos.FindIndex(e => e.Estabelecimento_Id == estabelecimentoId);
+            var estab = estabelecimentos.Find(e => e.Estabelecimento_Id == estabelecimentoId);
 
             return View(estab);
         }
@@ -82,6 +64,22 @@ namespace SocietyAgendor.UI.Controllers
             }
 
             await _estabelecimentoService.UpdateEstabelecimentoAsync(estabelecimento);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeleteEstabelecimento(int estabelecimentoId)
+        {
+            var estabelecimentos = await _estabelecimentoService.GetEstabelecimentoAsync();
+            var estabelecimento = estabelecimentos.Where(x => x.Estabelecimento_Id == estabelecimentoId).FirstOrDefault();
+
+            return View(estabelecimento);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteEstabelecimento(EstabelecimentoModel estabelecimento)
+        {
+            await _estabelecimentoService.DeleteEstabelecimentoAsync((int)estabelecimento.Estabelecimento_Id);
 
             return RedirectToAction("Index");
         }

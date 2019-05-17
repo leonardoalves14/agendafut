@@ -38,9 +38,27 @@ namespace SocietyAgendor.UI.Concrete
             return funcionarios;
         }
 
-        public Task<FuncionarioModel> CreateFuncionarioAsync(FuncionarioModel model)
+        public async Task<FuncionarioModel> CreateFuncionarioAsync(FuncionarioModel model)
         {
-            throw new NotImplementedException();
+            var funcionario = new FuncionarioModel();
+
+            HttpResponseMessage response = await client.PostAsync(
+                URL,
+                new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"));
+
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                using (var respostaStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
+                {
+                    return JsonConvert.DeserializeObject<FuncionarioModel>(
+                        await new StreamReader(respostaStream).
+                        ReadToEndAsync().ConfigureAwait(false));
+                }
+            }
+
+            return funcionario;
         }
 
         public async Task<HttpStatusCode> UpdateFuncionarioAsync(FuncionarioModel model)
@@ -48,9 +66,11 @@ namespace SocietyAgendor.UI.Concrete
             HttpResponseMessage response = await client.PutAsync(
                 $"{URL}/{model.Funcionario_Id}",
                 new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"));
-            response.EnsureSuccessStatusCode();
 
-            return response.StatusCode;
+            
+                response.EnsureSuccessStatusCode();
+
+                return response.StatusCode;
         }
 
         public Task<HttpStatusCode> DeleteFuncionarioAsync(int usuarioId)
