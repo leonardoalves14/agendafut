@@ -11,7 +11,7 @@ namespace SocietyAgendor.UI.Service
         Task<List<HorarioModel>> GetHorariosAsync();
         Task<HorarioModel> CreateHorarioAsync(HorarioModel model);
         Task<HttpStatusCode> UpdateHorarioAsync(HorarioModel model);
-        Task<HttpStatusCode> DeleteHorarioAsync(int horarioId);
+        Task<HttpStatusCode> DeleteHorarioAsync(HorarioModel horario);
         Task<List<HorariosDisponivelModel>> GetHorariosDisponiveisAsync(DateTime dia);
     }
 }

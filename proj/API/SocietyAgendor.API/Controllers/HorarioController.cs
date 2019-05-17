@@ -61,7 +61,7 @@ namespace SocietyAgendor.API.Controllers
         }
 
         [HttpDelete("{horarioId}")]
-        public IActionResult DeleteHorario(int horarioId, [FromBody] HorarioModel model)
+        public IActionResult DeleteHorario([FromBody] HorarioModel model, int horarioId)
         {
             _horarioRepository.DeleteHorario((int)model.Horario_Id, (int)model.DiaSemana_Id);
 
