@@ -4,16 +4,10 @@ namespace SocietyAgendor.API.Entities
 {
     public class Horario
     {
-        public int? HorarioId { get; set; }
-        public TimeSpan HorarioDe { get; set; }
-        public TimeSpan HorarioAte { get; set; }
-        public int? DiaSemanaId { get; set; }
-        public string DiaSemanaDesc { get; set; }
-    }
-
-    public class HorarioDisponivel
-    {
-        public int HorarioId { get; set; }
-        public string HorarioDesc { get; set; }
+        public int? Horario_Id { get; set; }
+        public TimeSpan Horario_De { get; set; }
+        public TimeSpan Horario_Ate { get; set; }
+        public int? DiaSemana_Id { get; set; }
+        public string DiaSemana_Desc { get; set; }
     }
 }

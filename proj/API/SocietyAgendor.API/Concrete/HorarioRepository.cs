@@ -24,27 +24,26 @@ namespace SocietyAgendor.API.Concrete
             return ExecuteSP<HorarioDisponivel>("spsHorarioDisponivel", parameters);
         }
 
-        public Horario CreateHorario(Horario model)
+        public int CreateHorario(Horario model)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@Horario_Id", model.HorarioId, System.Data.DbType.Int32, System.Data.ParameterDirection.InputOutput);
-            parameters.Add("@Horario_De", model.HorarioDe, System.Data.DbType.Time);
-            parameters.Add("@Horario_Ate", model.HorarioAte, System.Data.DbType.Time);
-            parameters.Add("@DiaSemana_Id", model.DiaSemanaId, System.Data.DbType.Int32);
+            parameters.Add("@Horario_Id", model.Horario_Id, System.Data.DbType.Int32, System.Data.ParameterDirection.InputOutput);
+            parameters.Add("@Horario_De", model.Horario_De, System.Data.DbType.Time);
+            parameters.Add("@Horario_Ate", model.Horario_Ate, System.Data.DbType.Time);
+            parameters.Add("@DiaSemana_Id", model.DiaSemana_Id, System.Data.DbType.Int32);
 
             ExecuteSP("spiHorario", parameters);
-            model.HorarioId = parameters.Get<int>("@Horario_Id");
 
-            return model;
+            return parameters.Get<int>("@Horario_Id");
         }
 
         public void UpdateHorario(Horario model)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@Horario_Id", model.HorarioId, System.Data.DbType.Int32);
-            parameters.Add("@Horario_De", model.HorarioDe, System.Data.DbType.Time);
-            parameters.Add("@Horario_Ate", model.HorarioAte, System.Data.DbType.Time);
-            parameters.Add("@DiaSemana_Id", model.DiaSemanaId, System.Data.DbType.Int32);
+            parameters.Add("@Horario_Id", model.Horario_Id, System.Data.DbType.Int32);
+            parameters.Add("@Horario_De", model.Horario_De, System.Data.DbType.Time);
+            parameters.Add("@Horario_Ate", model.Horario_Ate, System.Data.DbType.Time);
+            parameters.Add("@DiaSemana_Id", model.DiaSemana_Id, System.Data.DbType.Int32);
 
             ExecuteSP("spuHorario", parameters);
         }

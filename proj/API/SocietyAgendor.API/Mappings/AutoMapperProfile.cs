@@ -11,6 +11,9 @@ namespace SocietyAgendor.API.Mappings
             CreateMap<Funcionario, FuncionarioModel>().ReverseMap();
             CreateMap<Funcionario, PerfilFuncionarioModel>();
             CreateMap<Agendamento, AgendamentoModel>().ReverseMap();
+            CreateMap<Cargo, CargoModel>().ReverseMap();
+            CreateMap<Horario, HorarioModel>().ReverseMap();
+            CreateMap<HorarioDisponivel, HorarioDisponivelModel>().ReverseMap();
         }
     }
 }

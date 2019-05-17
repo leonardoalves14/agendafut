@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using SocietyAgendor.API.Entities;
 using SocietyAgendor.API.Models;
 using SocietyAgendor.API.Services;
@@ -13,48 +14,25 @@ namespace SocietyAgendor.API.Controllers
     public class HorarioController : Controller
     {
         private readonly IHorarioRepository _horarioRepository;
+        private readonly IMapper _mapper;
 
-        public HorarioController(IHorarioRepository horarioRepository)
+        public HorarioController(IHorarioRepository horarioRepository, IMapper mapper)
         {
             _horarioRepository = horarioRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAllHorarios()
         {
-            List<HorarioModel> result = new List<HorarioModel>();
-            List<Horario> list = _horarioRepository.GetAllHorarios();
-
-            foreach (var item in list)
-            {
-                result.Add(new HorarioModel
-                {
-                    Horario_Id = item.HorarioId,
-                    Horario_De = item.HorarioDe,
-                    Horario_Ate = item.HorarioAte,
-                    DiaSemana_Id = item.DiaSemanaId,
-                    DiaSemana_Desc = item.DiaSemanaDesc
-                });
-            }
-
+            var result = _mapper.Map<IEnumerable<HorarioModel>>(_horarioRepository.GetAllHorarios());
             return Ok(result);
         }
 
         [HttpGet("disponiveis/{dia}")]
         public IActionResult GetHorariosDisponiveis(DateTime dia)
         {
-            List<HorarioDisponivelModel> result = new List<HorarioDisponivelModel>();
-            List<HorarioDisponivel> list = _horarioRepository.GetHorariosDisponiveis(dia);
-
-            foreach (var item in list)
-            {
-                result.Add(new HorarioDisponivelModel
-                {
-                    Horario_Id = item.HorarioId,
-                    Horario_Desc = item.HorarioDesc
-                });
-            }
-
+            var result = _mapper.Map<IEnumerable<HorarioDisponivelModel>>(_horarioRepository.GetHorariosDisponiveis(dia));
             return Ok(result);
         }
 
@@ -62,19 +40,10 @@ namespace SocietyAgendor.API.Controllers
         public IActionResult CreateHorario([FromBody] HorarioModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            Horario horario = new Horario
-            {
-                HorarioDe = model.Horario_De,
-                HorarioAte = model.Horario_Ate,
-                DiaSemanaId = model.DiaSemana_Id
-            };
-
-            Horario newHorario = _horarioRepository.CreateHorario(horario);
-            model.Horario_Id = newHorario.HorarioId;
+            var horario = _mapper.Map<Horario>(model);
+            model.Horario_Id = _horarioRepository.CreateHorario(horario);
 
             return Ok(model);
         }
@@ -83,18 +52,9 @@ namespace SocietyAgendor.API.Controllers
         public IActionResult UpdateHorario(int horarioId, [FromBody] HorarioModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            Horario horario = new Horario
-            {
-                HorarioId = model.Horario_Id,
-                HorarioDe = model.Horario_De,
-                HorarioAte = model.Horario_Ate,
-                DiaSemanaId = model.DiaSemana_Id
-            };
-
+            var horario = _mapper.Map<Horario>(model);
             _horarioRepository.UpdateHorario(horario);
 
             return NoContent();

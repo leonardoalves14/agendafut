@@ -16,23 +16,22 @@ namespace SocietyAgendor.API.Concrete
             return ExecuteSP<Cargo>("spsCargo");
         }
 
-        public Cargo CreateCargo(Cargo model)
+        public int CreateCargo(Cargo model)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@Cargo_Id", model.CargoId, System.Data.DbType.Int32, System.Data.ParameterDirection.InputOutput);
-            parameters.Add("@Cargo_Des", model.CargoDesc, System.Data.DbType.String);
+            parameters.Add("@Cargo_Id", model.Cargo_Id, System.Data.DbType.Int32, System.Data.ParameterDirection.InputOutput);
+            parameters.Add("@Cargo_Des", model.Cargo_Desc, System.Data.DbType.String);
 
             ExecuteSP("spiCargo", parameters);
-            model.CargoId = parameters.Get<int>("@Cargo_Id");
 
-            return model;
+            return parameters.Get<int>("@Cargo_Id");
         }
 
         public void UpdateCargo(Cargo model)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@Cargo_Id", model.CargoId, System.Data.DbType.Int32);
-            parameters.Add("@Cargo_Des", model.CargoDesc, System.Data.DbType.String);
+            parameters.Add("@Cargo_Id", model.Cargo_Id, System.Data.DbType.Int32);
+            parameters.Add("@Cargo_Des", model.Cargo_Desc, System.Data.DbType.String);
 
             ExecuteSP("spuCargo", parameters);
         }
