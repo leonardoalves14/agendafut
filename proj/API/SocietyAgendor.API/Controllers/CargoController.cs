@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SocietyAgendor.API.Entities;
 using SocietyAgendor.API.Models;
@@ -12,27 +13,18 @@ namespace SocietyAgendor.API.Controllers
     public class CargoController : Controller
     {
         private readonly ICargoRepository _cargoRepository;
+        private readonly IMapper _mapper;
 
-        public CargoController(ICargoRepository cargoRepository)
+        public CargoController(ICargoRepository cargoRepository, IMapper mapper)
         {
             _cargoRepository = cargoRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAllCargos()
         {
-            List<CargoModel> result = new List<CargoModel>();
-            List<Cargo> list = _cargoRepository.GetAllCargos();
-
-            foreach (var cargo in list)
-            {
-                result.Add(new CargoModel
-                {
-                    Cargo_Id = cargo.CargoId,
-                    Cargo_Desc = cargo.CargoDesc
-                });
-            }
-
+            var result = _mapper.Map<IEnumerable<CargoModel>>(_cargoRepository.GetAllCargos());
             return Ok(result);
         }
 
@@ -40,17 +32,10 @@ namespace SocietyAgendor.API.Controllers
         public IActionResult CreateCargo([FromBody] CargoModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            Cargo cargo = new Cargo
-            {
-                CargoDesc = model.Cargo_Desc
-            };
-
-            Cargo newCargo = _cargoRepository.CreateCargo(cargo);
-            model.Cargo_Id = newCargo.CargoId;
+            var cargo = _mapper.Map<Cargo>(model);
+            model.Cargo_Id = _cargoRepository.CreateCargo(cargo);
 
             return Ok(model);
         }
@@ -59,21 +44,12 @@ namespace SocietyAgendor.API.Controllers
         public IActionResult UpdateCargo(int cargoId, [FromBody] CargoModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             if (!_cargoRepository.CargoExists(cargoId))
-            {
-                return NotFound($"Cargo {cargoId} não existe!");
-            }
+                return NotFound();
 
-            Cargo cargo = new Cargo
-            {
-                CargoId = model.Cargo_Id,
-                CargoDesc = model.Cargo_Desc
-            };
-
+            var cargo = _mapper.Map<Cargo>(model);
             _cargoRepository.UpdateCargo(cargo);
 
             return NoContent();
@@ -83,9 +59,7 @@ namespace SocietyAgendor.API.Controllers
         public IActionResult DeleteCargo(int cargoId)
         {
             if (!_cargoRepository.CargoExists(cargoId))
-            {
-                return NotFound($"Cargo {cargoId} não existe!");
-            }
+                return NotFound();
 
             _cargoRepository.DeleteCargo(cargoId);
 

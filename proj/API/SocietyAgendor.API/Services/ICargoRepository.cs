@@ -6,7 +6,7 @@ namespace SocietyAgendor.API.Services
     public interface ICargoRepository
     {
         List<Cargo> GetAllCargos();
-        Cargo CreateCargo(Cargo model);
+        int CreateCargo(Cargo model);
         void UpdateCargo(Cargo model);
         void DeleteCargo(int cargoId);
         bool CargoExists(int cargoId);

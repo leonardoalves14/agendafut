@@ -8,7 +8,7 @@ namespace SocietyAgendor.API.Services
     {
         List<Horario> GetAllHorarios();
         List<HorarioDisponivel> GetHorariosDisponiveis(DateTime dia);
-        Horario CreateHorario(Horario model);
+        int CreateHorario(Horario model);
         void UpdateHorario(Horario model);
         void DeleteHorario(int horarioId, int diaSemanaId);
     }
