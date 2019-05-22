@@ -17,14 +17,11 @@ namespace SocietyAgendor.UI.Controllers
         {
             _horarioService = horarioService;
             _diaSemanaService = diaSemanaService;
-
         }
 
         public async Task<IActionResult> Index()
         {
             var horarios = await _horarioService.GetHorariosAsync();
-
-
             return View(horarios);
         }
 
@@ -51,11 +48,10 @@ namespace SocietyAgendor.UI.Controllers
             var horarios = await _horarioService.GetHorariosAsync();
             var horario = horarios.Find(c => c.Horario_Id == horarioId);
 
+            ViewBag.DiaSemanaList = await GetDiaSemanaListAsync();
+
             return View("UpdateHorario", horario);
-            
         }
-
-
 
         [HttpPost]
         public async Task<IActionResult> UpdateHorario(HorarioModel horario)
@@ -71,7 +67,7 @@ namespace SocietyAgendor.UI.Controllers
         }
 
         public async Task<IActionResult> DeleteHorario(int horarioId)
-         {
+        {
             var horarios = await _horarioService.GetHorariosAsync();
             var horario = horarios.Where(x => x.Horario_Id == horarioId).FirstOrDefault();
 
@@ -81,9 +77,17 @@ namespace SocietyAgendor.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteHorario(HorarioModel horario)
         {
-            await _horarioService.DeleteHorarioAsync((int)horario.Horario_Id);
+            await _horarioService.DeleteHorarioAsync(horario);
 
             return RedirectToAction("Index");
+        }
+
+        private async Task<SelectList> GetDiaSemanaListAsync()
+        {
+            var diaSemana = await _diaSemanaService.GetDiasDaSemanaAsync();
+            diaSemana.Insert(0, new DiaDaSemanaModel { DiaSemana_Id = -1, DiaSemana_Desc = "Selecione um dia da semana ..." });
+
+            return new SelectList(diaSemana, "DiaSemana_Id", "DiaSemana_Desc");
         }
     }
 }

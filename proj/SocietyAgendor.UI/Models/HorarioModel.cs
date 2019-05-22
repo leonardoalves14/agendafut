@@ -16,6 +16,7 @@ namespace SocietyAgendor.UI.Models
         public TimeSpan Horario_Ate { get; set; }
 
         [Required]
+        [Display(Name = "Dia da Semana")]
         public int? DiaSemana_Id { get; set; }
 
         [Display(Name = "Dia da Semana")]
