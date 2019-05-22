@@ -64,7 +64,7 @@
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label asp-for="Endereco_CEP" class="control-label"></label>
-                    <input asp-for="Endereco_CEP" class="form-control" />
+                    <input asp-for="Endereco_CEP" class="form-control" onblur="pesquisacep(this.value);" />
                     <span asp-validation-for="Endereco_CEP" class="text-danger"></span>
                 </div>
             </div>

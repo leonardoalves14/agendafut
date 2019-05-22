@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SocietyAgendor.UI.Models;
 using SocietyAgendor.UI.Service;
 
@@ -24,8 +25,9 @@ namespace SocietyAgendor.UI.Controllers
             return View(horarios);
         }
 
-        public IActionResult CreateHorario()
+        public async Task<IActionResult> CreateHorario()
         {
+            ViewBag.DiaSemanaList = await GetDiaSemanaListAsync();
             return View();
         }
 
