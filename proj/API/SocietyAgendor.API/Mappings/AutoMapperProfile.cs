@@ -14,6 +14,7 @@ namespace SocietyAgendor.API.Mappings
             CreateMap<Cargo, CargoModel>().ReverseMap();
             CreateMap<Horario, HorarioModel>().ReverseMap();
             CreateMap<HorarioDisponivel, HorarioDisponivelModel>().ReverseMap();
+            CreateMap<Cliente, ClienteModel>().ReverseMap();
         }
     }
 }
