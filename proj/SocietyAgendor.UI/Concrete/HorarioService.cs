@@ -91,22 +91,19 @@ namespace SocietyAgendor.UI.Concrete
             return response.StatusCode;
         }
 
-        public async Task<HttpStatusCode> DeleteHorarioAsync(HorarioModel model)
+        public async Task<HttpStatusCode> DeleteHorarioAsync(HorarioModel horario)
         {
-            HttpResponseMessage response = await client.PostAsync(
-                $"{URL}/delete/{model.Horario_Id}",
-                new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"));
+            var uri = new Uri($"{URL}/{horario.Horario_Id}");
 
-            response.EnsureSuccessStatusCode();
+            var stringContent = new StringContent(JsonConvert.SerializeObject(horario), Encoding.UTF8, "application/json");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Delete, uri)
+            {
+                Content = stringContent
+            };
 
-            if (response.IsSuccessStatusCode)
-            {
-                return response.StatusCode;
-            }
-            else
-            {
-                return HttpStatusCode.BadRequest;
-            }
+            var responseMessage = await client.SendAsync(requestMessage);
+
+            return responseMessage.StatusCode;
         }
     }
 }

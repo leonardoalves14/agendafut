@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using SocietyAgendor.UI.Models;
 using SocietyAgendor.UI.Service;
 
@@ -57,9 +56,7 @@ namespace SocietyAgendor.UI.Controllers
         public async Task<IActionResult> UpdateHorario(HorarioModel horario)
         {
             if (!ModelState.IsValid)
-            {
                 throw new Exception(ModelStateInvalidError.Message(ModelState));
-            }
 
             var response = await _horarioService.UpdateHorarioAsync(horario);
 
