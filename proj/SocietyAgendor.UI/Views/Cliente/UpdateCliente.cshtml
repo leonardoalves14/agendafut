@@ -149,7 +149,7 @@
                 </div>
             </div>
             <div class="form-group col-lg-1">
-                <input type="submit" value="Atualizar" class="btn btn-primary" />
+                <input type="submit" value="Atualizar" class="btn btn-primary" onclick="submitClickedEvent(event)" />
             </div>
         </div>
     </form>
@@ -157,5 +157,11 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            $('#Cliente_CPF').mask('000.000.000-00', { reverse: true });
+        });        
+    </script>
 }
 

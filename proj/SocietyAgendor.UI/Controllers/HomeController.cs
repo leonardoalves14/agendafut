@@ -51,7 +51,7 @@ namespace SocietyAgendor.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             var user = new UsuarioModel

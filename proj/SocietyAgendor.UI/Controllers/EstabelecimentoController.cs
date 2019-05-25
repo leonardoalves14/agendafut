@@ -35,7 +35,7 @@ namespace SocietyAgendor.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             var newEstab = await _estabelecimentoService.CreateEstabelecimentoAsync(estabelecimento);
@@ -59,9 +59,10 @@ namespace SocietyAgendor.UI.Controllers
         {
             // Repensar em como fazer aqui
             if (!ModelState.IsValid)
-            {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
-            }
+                throw new Exception("Propriedades Inválidas");
+
+            if (!Validators.ValidarCNPJ(estabelecimento.Estabelecimento_CNPJ))
+                throw new Exception("CNPJ Inválido");
 
             await _estabelecimentoService.UpdateEstabelecimentoAsync(estabelecimento);
 

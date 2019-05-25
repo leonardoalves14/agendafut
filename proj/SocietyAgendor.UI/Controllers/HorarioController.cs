@@ -58,7 +58,7 @@ namespace SocietyAgendor.UI.Controllers
         public async Task<IActionResult> UpdateHorario(HorarioModel horario)
         {
             if (!ModelState.IsValid)
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+throw new Exception("Propriedades Inválidas");
 
             var response = await _horarioService.UpdateHorarioAsync(horario);
 

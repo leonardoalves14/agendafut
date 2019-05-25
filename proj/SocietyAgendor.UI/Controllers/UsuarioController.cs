@@ -20,22 +20,22 @@ namespace SocietyAgendor.UI.Controllers
             var usuarios = await _usuarioService.GetUsuariosAsync();
 
             return View(usuarios);
-        }        
+        }
 
         public IActionResult UsuarioAdd()
         {
             return PartialView("_NewUserPartial", new UsuarioModel());
-        }        
+        }
 
         [HttpPost]
         public async Task<IActionResult> UsuarioAdd(UsuarioModel usuario)
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
-           var newUser = await _usuarioService.CreateUsuarioAsync(usuario);
+            var newUser = await _usuarioService.CreateUsuarioAsync(usuario);
 
             return RedirectToAction("Index");
         }
@@ -53,7 +53,7 @@ namespace SocietyAgendor.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             var response = await _usuarioService.UpdateUsuarioAsync(usuario);
@@ -68,13 +68,13 @@ namespace SocietyAgendor.UI.Controllers
 
             return PartialView("_DeleteUserPartial", usuario);
         }
-                
+
         [HttpPost]
         public async Task<IActionResult> UsuarioDelete(UsuarioModel model)
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             var response = await _usuarioService.DeleteUsuarioAsync((int)model.Usuario_Id);

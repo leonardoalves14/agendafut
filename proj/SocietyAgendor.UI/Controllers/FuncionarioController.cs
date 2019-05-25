@@ -47,7 +47,7 @@ namespace SocietyAgendor.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             var newFunc = await _funcionarioService.CreateFuncionarioAsync(usuario);
@@ -73,7 +73,7 @@ namespace SocietyAgendor.UI.Controllers
 
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             await _funcionarioService.UpdateFuncionarioAsync(funcionario);

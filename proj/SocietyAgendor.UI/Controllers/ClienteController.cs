@@ -35,7 +35,7 @@ namespace SocietyAgendor.UI.Controllers
             // Repensar em como fazer aqui
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             var newCliente = await _clienteService.CreateClientesAsync(cliente);
@@ -79,9 +79,10 @@ namespace SocietyAgendor.UI.Controllers
         {
             // Repensar em como fazer aqui
             if (!ModelState.IsValid)
-            {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
-            }
+                throw new Exception("Propriedades Inválidas");
+
+            if (!Validators.ValidarCPF(cliente.Cliente_CPF))
+                throw new Exception("CPF INVÁLIDO");
 
             await _clienteService.UpdateClientesAsync(cliente);
 

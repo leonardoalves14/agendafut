@@ -45,7 +45,7 @@ namespace SocietyAgendor.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             model.DiaSemana_Id = (int)model.DataAgendamento.DayOfWeek + 1;
@@ -71,7 +71,7 @@ namespace SocietyAgendor.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             model.DiaSemana_Id = (int)model.DataAgendamento.DayOfWeek + 1;

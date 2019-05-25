@@ -37,7 +37,7 @@ namespace SocietyAgendor.UI.Controllers
             // Repensar em como fazer aqui
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             var newCargo = await _cargoService.CreateHorarioAsync(cargo);
@@ -62,7 +62,7 @@ namespace SocietyAgendor.UI.Controllers
             // Repensar em como fazer aqui
             if (!ModelState.IsValid)
             {
-                throw new Exception(ModelStateInvalidError.Message(ModelState));
+                throw new Exception("Propriedades Inválidas");
             }
 
             await _cargoService.UpdateCargoAsync(cargo);
