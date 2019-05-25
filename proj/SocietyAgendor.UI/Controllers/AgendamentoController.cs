@@ -32,12 +32,25 @@ namespace SocietyAgendor.UI.Controllers
             return View(items);
         }
 
-        public async Task<IActionResult> CreateAgendamento()
+        public async Task<IActionResult> CreateAgendamento(int? clienteId)
         {
             ViewBag.ClientesList = await GetClientesListAsync();
             ViewBag.EstabelecimentosList = await GetEstabelecimentosListAsync();
 
-            return View();
+            if (clienteId.HasValue)
+            {
+                var agendamento = new AgendamentoModel
+                {
+                    Cliente_Id = clienteId.GetValueOrDefault()
+                };
+
+                return View(agendamento);
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         [HttpPost]
@@ -48,7 +61,7 @@ namespace SocietyAgendor.UI.Controllers
                 throw new Exception("Propriedades Inválidas");
             }
 
-            model.DiaSemana_Id = (int)model.DataAgendamento.DayOfWeek + 1;
+            model.DiaSemana_Id = (int)model.DataAgendamento.GetValueOrDefault().DayOfWeek + 1;
             await _agendamentoService.CreateAgendamentoAsync(model);
 
             return RedirectToAction("Index");
@@ -61,7 +74,7 @@ namespace SocietyAgendor.UI.Controllers
 
             ViewBag.ClientesList = await GetClientesListAsync();
             ViewBag.EstabelecimentosList = await GetEstabelecimentosListAsync();
-            ViewBag.HorariosDisponiveisList = await GetHorariosDisponiveisListAsync(agendamento.DataAgendamento);
+            ViewBag.HorariosDisponiveisList = await GetHorariosDisponiveisListAsync(agendamento.DataAgendamento.GetValueOrDefault());
 
             return View(agendamento);
         }
@@ -74,7 +87,7 @@ namespace SocietyAgendor.UI.Controllers
                 throw new Exception("Propriedades Inválidas");
             }
 
-            model.DiaSemana_Id = (int)model.DataAgendamento.DayOfWeek + 1;
+            model.DiaSemana_Id = (int)model.DataAgendamento.GetValueOrDefault().DayOfWeek + 1;
             await _agendamentoService.UpdateAgendamentoAsync(model);
 
             return RedirectToAction("Index");

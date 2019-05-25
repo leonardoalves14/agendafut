@@ -11,7 +11,7 @@
 
 
 <div>
-    <form asp-action="ClienteAdd">
+    <form asp-controller="Cliente" asp-action="ClienteAdd" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         @* Linha 1 *@
@@ -93,7 +93,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Logradouro" class="control-label"></label>
-                    <input asp-for="Endereco_Logradouro" class="form-control" disabled />
+                    <input asp-for="Endereco_Logradouro" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Logradouro" class="text-danger"></span>
                 </div>
             </div>
@@ -101,7 +101,7 @@
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label asp-for="Endereco_Numero" class="control-label"></label>
-                    <input asp-for="Endereco_Numero" class="form-control" />
+                    <input asp-for="Endereco_Numero" class="form-control"  />
                     <span asp-validation-for="Endereco_Numero" class="text-danger"></span>
                 </div>
             </div>
@@ -109,7 +109,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Bairro" class="control-label"></label>
-                    <input asp-for="Endereco_Bairro" class="form-control" disabled />
+                    <input asp-for="Endereco_Bairro" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Bairro" class="text-danger"></span>
                 </div>
             </div>
@@ -120,7 +120,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Cidade" class="control-label"></label>
-                    <input asp-for="Endereco_Cidade" class="form-control" disabled />
+                    <input asp-for="Endereco_Cidade" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Cidade" class="text-danger"></span>
                 </div>
             </div>
@@ -128,7 +128,7 @@
             <div class="form-row">
                 <div class="form-group col-md-1">
                     <label asp-for="Endereco_Estado" class="control-label"></label>
-                    <input asp-for="Endereco_Estado" class="form-control" disabled />
+                    <input asp-for="Endereco_Estado" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Estado" class="text-danger"></span>
                 </div>
             </div>
@@ -151,7 +151,7 @@
                 </div>
             </div>
             <div class="form-group col-lg-1">
-                <input type="submit" value="Criar" class="btn btn-primary" onclick="submitClickedEvent(event)"/>
+                <input type="submit" value="Criar" class="btn btn-primary"/>
             </div>
         </div>
 
@@ -165,11 +165,5 @@
         $(document).ready(function () {
             $('#Cliente_CPF').mask('000.000.000-00', { reverse: true });
         });
-
-        function submitClickedEvent(event) {
-            event.preventDefault();
-
-            console.log('alo');
-        }
     </script>
 }

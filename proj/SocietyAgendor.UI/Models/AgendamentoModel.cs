@@ -14,27 +14,27 @@ namespace SocietyAgendor.UI.Models
 
         [Display(Name = "Data do agendamento")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime DataAgendamento { get; set; }
+        public DateTime? DataAgendamento { get; set; }
 
-        [Display(Name = "Id Dia da Semana")]
+        [Display(Name = "Dia da Semana")]
         public int DiaSemana_Id { get; set; }
 
         [Display(Name = "Dia da Semana")]
         public string DiaSemana_Desc { get; set; }
 
-        [Display(Name = "Id do Horário")]
+        [Display(Name = "Horário")]
         public int Horario_Id { get; set; }
 
         [Display(Name = "Descrição do Horário")]
         public string Horario_Desc { get; set; }
 
-        [Display(Name = "Id do Cliente")]
+        [Display(Name = "Cliente")]
         public int Cliente_Id { get; set; }
 
         [Display(Name = "Nome do Cliente")]
         public string Cliente_Nome { get; set; }
 
-        [Display (Name = "Id do Estabelecimento")]
+        [Display (Name = "Estabelecimento")]
         public int Estabelecimento_Id { get; set; }
 
         [Display(Name = "Estabelecimento")]
