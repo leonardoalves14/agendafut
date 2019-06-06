@@ -38,8 +38,9 @@
                     <td>@func.Cargo_Desc</td>
                     <td>@func.Estabelecimento_Nome</td>
                     <td>
-                        <a asp-controller="Funcionario" asp-action="UpdateFuncionario" asp-route-funcionarioId="@func.Funcionario_Id" class="btn btn-sm btn-default editUser">Editar</a>
-                        <a class="btn btn-sm btn-danger" data-userid="@func.Funcionario_Id">Excluir</a>
+                        @Html.ActionLink("Editar", "UpdateFuncionario", new { funcionarioId = func.Funcionario_Id }) |
+                        @Html.ActionLink("Excluir", "DeleteFuncionario", new { funcionarioId = func.Funcionario_Id })
+                        
                     </td>
                 </tr>
             }

@@ -20,14 +20,17 @@
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 400px;">
+                <th>
                     @Html.DisplayNameFor(model => model.Estabelecimento_Nome)
                 </th>
-                <th style="width: 300px;">
+                <th>
                     @Html.DisplayNameFor(model => model.Estabelecimento_Email)
                 </th>
-                <th style="width: 300px;">
+                <th>
                     @Html.DisplayNameFor(model => model.Estabelecimento_Telefone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estabelecimento_CNPJ)
                 </th>
             </tr>
         </thead>
@@ -45,8 +48,11 @@
                     @Html.DisplayFor(modelItem => item.Estabelecimento_Telefone)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "UpdateEstabelecimento", new { estabelecimentoId = item.Estabelecimento_Id }) |             
-                    @Html.ActionLink("Excluir", "DeleteEstabelecimento", new { estabelecimentoId = item.Estabelecimento_Id }) 
+                    @Html.DisplayFor(modelItem => item.Estabelecimento_CNPJ)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "UpdateEstabelecimento", new { estabelecimentoId = item.Estabelecimento_Id }) |
+                    @Html.ActionLink("Excluir", "DeleteEstabelecimento", new { estabelecimentoId = item.Estabelecimento_Id })
                 </td>
             </tr>
             }

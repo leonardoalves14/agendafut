@@ -81,6 +81,22 @@ namespace SocietyAgendor.UI.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> DeleteFuncionario(int funcionarioId)
+        {
+            var funcionarios = await _funcionarioService.GetFuncionariosAsync();
+            var funcionario = funcionarios.Where(x => x.Funcionario_Id == funcionarioId).FirstOrDefault();
+
+            return View(funcionario);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteFuncionario(FuncionarioModel funcionario)
+        {
+            await _funcionarioService.DeleteFuncionarioAsync((int)funcionario.Funcionario_Id);
+
+            return RedirectToAction("Index");
+        }
+
 
         private async Task<SelectList> GetCargosListAsync()
         {

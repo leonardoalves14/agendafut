@@ -12,23 +12,23 @@
     </div>
     <table class="table" id="tableUsers">
         <thead>
-            <tr>
-                <th style="width: 150px;"></th>
+            <tr>    
                 <th style="width: 80px;">Id</th>
                 <th>@Html.DisplayNameFor(m => m.Usuario_Login)</th>
+                <th style="width: 150px;"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var usuario in Model)
             {
-                <tr>
-                    <td>
-                        <button type="button" onclick="editUser(event)" data-userid="@usuario.Usuario_Id" class="btn btn-sm btn-default editUser">Editar</button>
-                        <a class="btn btn-sm btn-danger" data-userid="@usuario.Usuario_Id" onclick="deleteUser(event)">Excluir</a>
-                    </td>
-                    <th>@usuario.Usuario_Id</th>
-                    <td>@usuario.Usuario_Login</td>
-                </tr>
+            <tr>
+                <th>@usuario.Usuario_Id</th>
+                <td>@usuario.Usuario_Login</td>
+                <td>
+                    <button type="button" onclick="editUser(event)" data-userid="@usuario.Usuario_Id" class="btn btn-sm btn-default editUser">Editar</button>
+                    <a class="btn btn-sm btn-danger" data-userid="@usuario.Usuario_Id" onclick="deleteUser(event)">Excluir</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

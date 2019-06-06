@@ -24,6 +24,7 @@ namespace SocietyAgendor.UI.Controllers
 
         public IActionResult IndexLogado()
         {
+            ViewBag.UserName = UserInfo.UserName;
             return PartialView();
         }
 
@@ -69,5 +70,10 @@ namespace SocietyAgendor.UI.Controllers
 
             return RedirectToAction("Index");
         }
+    }
+
+    public static class UserInfo
+    {
+        public static string UserName => "Leonardo";
     }
 }

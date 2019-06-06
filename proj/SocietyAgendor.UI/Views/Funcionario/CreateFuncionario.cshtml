@@ -1,11 +1,11 @@
 ﻿@model SocietyAgendor.UI.Models.FuncionarioModel
 
 @{
-    ViewData["Title"] = "CreateFuncionario";
+    ViewData["Title"] = "Criar Funcionário";
     Layout = "~/Views/Shared/_LayoutLogado.cshtml";
 }
 
-<h2>Criar Funcionario</h2>
+<h3>Criar Funcionario</h3>
 
 <hr />
 <div>
@@ -22,14 +22,14 @@
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label asp-for="Funcionario_CPF" class="control-label"></label>
-                        <input asp-for="Funcionario_CPF" class="form-control" />
+                        <input asp-for="Funcionario_CPF" placeholder="000.000.000-00" class="form-control" />
                         <span asp-validation-for="Funcionario_CPF" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label asp-for="Funcionario_RG" class="control-label"></label>
-                        <input asp-for="Funcionario_RG" class="form-control" />
+                        <input asp-for="Funcionario_RG" placeholder="00.000.000-0" class="form-control" />
                         <span asp-validation-for="Funcionario_RG" class="text-danger"></span>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Funcionario_Email" class="control-label"></label>
-                    <input asp-for="Funcionario_Email" class="form-control" />
+                    <input asp-for="Funcionario_Email" placeholder="exemplo@exemplo.com" class="form-control" />
                     <span asp-validation-for="Funcionario_Email" class="text-danger"></span>
                 </div>
             </div>
@@ -62,18 +62,18 @@
 
         <div class="row">
             <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label asp-for="Funcionario_Celular" class="control-label"></label>
-                    <input asp-for="Funcionario_Celular" class="form-control" />
-                    <span asp-validation-for="Funcionario_Celular" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label asp-for="Funcionario_Telefone" class="control-label"></label>
+                        <input asp-for="Funcionario_Telefone" placeholder="00 0000-0000" class="form-control" />
+                        <span asp-validation-for="Funcionario_Telefone" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label asp-for="Funcionario_Telefone" class="control-label"></label>
-                    <input asp-for="Funcionario_Telefone" class="form-control" />
-                    <span asp-validation-for="Funcionario_Telefone" class="text-danger"></span>
-                </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Funcionario_Celular" class="control-label"></label>
+                <input asp-for="Funcionario_Celular" placeholder="00 00000-0000" class="form-control" />
+                <span asp-validation-for="Funcionario_Celular" class="text-danger"></span>
             </div>
         </div>
 
@@ -81,14 +81,14 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_CEP" class="control-label"></label>
-                    <input asp-for="Endereco_CEP" class="form-control" onblur="pesquisacep(this.value);" />
+                    <input asp-for="Endereco_CEP" placeholder="00000-000" class="form-control" onblur="pesquisacep(this.value);" />
                     <span asp-validation-for="Endereco_CEP" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Logradouro" class="control-label"></label>
-                    <input asp-for="Endereco_Logradouro" class="form-control" readonly/>
+                    <input asp-for="Endereco_Logradouro" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Logradouro" class="text-danger"></span>
                 </div>
             </div>
@@ -102,7 +102,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Bairro" class="control-label"></label>
-                    <input asp-for="Endereco_Bairro" class="form-control" readonly/>
+                    <input asp-for="Endereco_Bairro" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Bairro" class="text-danger"></span>
                 </div>
             </div>
@@ -112,14 +112,14 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Cidade" class="control-label"></label>
-                    <input asp-for="Endereco_Cidade" class="form-control" readonly/>
+                    <input asp-for="Endereco_Cidade" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Cidade" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-1">
                     <label asp-for="Endereco_Estado" class="control-label"></label>
-                    <input asp-for="Endereco_Estado" class="form-control" readonly/>
+                    <input asp-for="Endereco_Estado" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Estado" class="text-danger"></span>
                 </div>
             </div>
@@ -173,8 +173,25 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-       
+        $(document).ready(function () {
+            $('#Funcionario_CPF').mask('00.000.000/0000-00', { reverse: true });
+        });
 
+        $(document).ready(function () {
+            $('#Funcionario_RG').mask('00 0000-0000', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Funcionario_Telefone').mask('00 0000-0000', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Funcionario_Celular').mask('00 00000-0000', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Endereco_CEP').mask('00000-000', { reverse: true });
+        });
     </script>
 }
 

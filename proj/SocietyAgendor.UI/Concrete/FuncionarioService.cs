@@ -73,9 +73,12 @@ namespace SocietyAgendor.UI.Concrete
                 return response.StatusCode;
         }
 
-        public Task<HttpStatusCode> DeleteFuncionarioAsync(int usuarioId)
+        public async Task<HttpStatusCode> DeleteFuncionarioAsync(int usuarioId)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = await client.DeleteAsync($"{URL}/{usuarioId}");
+
+            response.EnsureSuccessStatusCode();
+            return response.StatusCode;
         }
     }
 }

@@ -27,7 +27,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Cliente_CPF" class="control-label"></label>
-                    <input asp-for="Cliente_CPF" class="form-control" />
+                    <input asp-for="Cliente_CPF" placeholder="000.000.000-00" class="form-control" />
                     <span asp-validation-for="Cliente_CPF" class="text-danger"></span>
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Cliente_RG" class="control-label"></label>
-                    <input asp-for="Cliente_RG" class="form-control" />
+                    <input asp-for="Cliente_RG" placeholder="00.000.000-0" class="form-control" />
                     <span asp-validation-for="Cliente_RG" class="text-danger"></span>
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="form-row">
                 <div class="form-group col-md-5">
                     <label asp-for="Cliente_Email" class="control-label"></label>
-                    <input asp-for="Cliente_Email" class="form-control" />
+                    <input asp-for="Cliente_Email" placeholder="exemplo@exemplo.com" class="form-control" />
                     <span asp-validation-for="Cliente_Email" class="text-danger"></span>
                 </div>
             </div>
@@ -66,7 +66,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Cliente_Telefone" class="control-label"></label>
-                    <input asp-for="Cliente_Telefone" class="form-control" />
+                    <input asp-for="Cliente_Telefone" placeholder="00 0000-0000" class="form-control" />
                     <span asp-validation-for="Cliente_Telefone" class="text-danger"></span>
                 </div>
             </div>
@@ -74,7 +74,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Cliente_Celular" class="control-label"></label>
-                    <input asp-for="Cliente_Celular" class="form-control" />
+                    <input asp-for="Cliente_Celular" placeholder="00 00000-0000" class="form-control" />
                     <span asp-validation-for="Cliente_Celular" class="text-danger"></span>
                 </div>
             </div>
@@ -85,7 +85,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_CEP" class="control-label"></label>
-                    <input asp-for="Endereco_CEP" class="form-control" onblur="pesquisacep(this.value);" />
+                    <input asp-for="Endereco_CEP" placeholder="00000-000" class="form-control" onblur="pesquisacep(this.value);" />
                     <span asp-validation-for="Endereco_CEP" class="text-danger"></span>
                 </div>
             </div>
@@ -164,6 +164,22 @@
     <script>
         $(document).ready(function () {
             $('#Cliente_CPF').mask('000.000.000-00', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Cliente_RG').mask('00.000.000-0', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Cliente_Telefone').mask('00 0000-0000', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Cliente_Celular').mask('00 00000-0000', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Endereco_CEP').mask('00000-000', { reverse: true });
         });
     </script>
 }

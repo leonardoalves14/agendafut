@@ -24,7 +24,7 @@
             <div class="form-group">
                 <div class="form-group col-md-3">
                     <label asp-for="Estabelecimento_CNPJ" class="control-label"></label>
-                    <input asp-for="Estabelecimento_CNPJ" class="form-control" />
+                    <input asp-for="Estabelecimento_CNPJ" placeholder="00.000.000/0000-00" class="form-control" />
                     <span asp-validation-for="Estabelecimento_CNPJ" class="text-danger"></span>
                 </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Estabelecimento_Telefone" class="control-label"></label>
-                    <input asp-for="Estabelecimento_Telefone" class="form-control" />
+                    <input asp-for="Estabelecimento_Telefone" placeholder="00 0000-0000" class="form-control" />
                     <span asp-validation-for="Estabelecimento_Telefone" class="text-danger"></span>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Estabelecimento_Celular" class="control-label"></label>
-                    <input asp-for="Estabelecimento_Celular" class="form-control" />
+                    <input asp-for="Estabelecimento_Celular" placeholder="00 00000-0000" class="form-control" />
                     <span asp-validation-for="Estabelecimento_Celular" class="text-danger"></span>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label asp-for="Estabelecimento_Email" class="control-label"></label>
-                    <input asp-for="Estabelecimento_Email" class="form-control" />
+                    <input asp-for="Estabelecimento_Email" placeholder="exemplo@exemplo.com" class="form-control" />
                     <span asp-validation-for="Estabelecimento_Email" class="text-danger"></span>
                 </div>
             </div>
@@ -62,7 +62,7 @@
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label asp-for="Endereco_CEP" class="control-label"></label>
-                    <input asp-for="Endereco_CEP" class="form-control" onblur="pesquisacep(this.value);" />
+                    <input asp-for="Endereco_CEP" placeholder="00000-000" class="form-control" onblur="pesquisacep(this.value);" />
                     <span asp-validation-for="Endereco_CEP" class="text-danger"></span>
                 </div>
             </div>
@@ -70,7 +70,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Logradouro" class="control-label"></label>
-                    <input asp-for="Endereco_Logradouro" class="form-control" readonly/>
+                    <input asp-for="Endereco_Logradouro" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Logradouro" class="text-danger"></span>
                 </div>
             </div>
@@ -86,7 +86,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Bairro" class="control-label"></label>
-                    <input asp-for="Endereco_Bairro" class="form-control" readonly/>
+                    <input asp-for="Endereco_Bairro" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Bairro" class="text-danger"></span>
                 </div>
             </div>
@@ -97,7 +97,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label asp-for="Endereco_Cidade" class="control-label"></label>
-                    <input asp-for="Endereco_Cidade" class="form-control" readonly/>
+                    <input asp-for="Endereco_Cidade" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Cidade" class="text-danger"></span>
                 </div>
             </div>
@@ -105,7 +105,7 @@
             <div class="form-row">
                 <div class="form-group col-md-1">
                     <label asp-for="Endereco_Estado" class="control-label"></label>
-                    <input asp-for="Endereco_Estado" class="form-control" readonly/>
+                    <input asp-for="Endereco_Estado" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Estado" class="text-danger"></span>
                 </div>
             </div>
@@ -135,4 +135,22 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            $('#Estabelecimento_CNPJ').mask('00.000.000/0000-00', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Estabelecimento_Telefone').mask('00 0000-0000', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Estabelecimento_Celular').mask('00 00000-0000', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Endereco_CEP').mask('00000-000', { reverse: true });
+        });
+    </script>
 }
