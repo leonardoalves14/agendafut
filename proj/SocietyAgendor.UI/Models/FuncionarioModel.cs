@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SocietyAgendor.UI.Service;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SocietyAgendor.UI.Models
@@ -13,6 +14,7 @@ namespace SocietyAgendor.UI.Models
         public string Funcionario_Nome { get; set; }
 
         [Required]
+        [CPF]
         [Display(Name = "CPF")]
         public string Funcionario_CPF { get; set; }
 

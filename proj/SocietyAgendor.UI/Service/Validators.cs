@@ -1,4 +1,10 @@
-﻿namespace SocietyAgendor.UI.Service
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using SocietyAgendor.UI.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace SocietyAgendor.UI.Service
 {
     public static class Validators
     {
@@ -182,5 +188,46 @@
 
         public static bool ValidarCNPJ(Cnpj cnpj)
             => cnpj.EhValido;
+    }
+
+    public class CPFAttribute : ValidationAttribute, IClientModelValidator
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var funcionario = (FuncionarioModel)validationContext.ObjectInstance;
+            var cpf = (string)value;
+
+            if (!Validators.ValidarCPF(cpf))
+                return new ValidationResult(GetErrorMessage());
+
+            return ValidationResult.Success;
+        }
+
+        public void AddValidation(ClientModelValidationContext context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            MergeAttribute(context.Attributes, "data-val", "true");
+            MergeAttribute(context.Attributes, "data-val-validacaocpf", GetErrorMessage());
+        }
+
+        private bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
+        {
+            if (attributes.ContainsKey(key))
+            {
+                return false;
+            }
+
+            attributes.Add(key, value);
+            return true;
+        }
+
+        protected string GetErrorMessage()
+        {
+            return "CPF inválido!";
+        }
     }
 }

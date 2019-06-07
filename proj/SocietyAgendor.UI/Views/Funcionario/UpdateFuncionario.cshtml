@@ -93,7 +93,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Logradouro" class="control-label"></label>
-                    <input asp-for="Endereco_Logradouro" class="form-control" readonly/>
+                    <input asp-for="Endereco_Logradouro" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Logradouro" class="text-danger"></span>
                 </div>
             </div>
@@ -107,7 +107,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Bairro" class="control-label"></label>
-                    <input asp-for="Endereco_Bairro" class="form-control" readonly/>
+                    <input asp-for="Endereco_Bairro" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Bairro" class="text-danger"></span>
                 </div>
             </div>
@@ -117,14 +117,14 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label asp-for="Endereco_Cidade" class="control-label"></label>
-                    <input asp-for="Endereco_Cidade" class="form-control" readonly/>
+                    <input asp-for="Endereco_Cidade" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Cidade" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-1">
                     <label asp-for="Endereco_Estado" class="control-label"></label>
-                    <input asp-for="Endereco_Estado" class="form-control" readonly/>
+                    <input asp-for="Endereco_Estado" class="form-control" readonly />
                     <span asp-validation-for="Endereco_Estado" class="text-danger"></span>
                 </div>
             </div>
@@ -178,4 +178,79 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            const cpf = $('#Funcionario_CPF').val();
+
+            $('#Funcionario_CPF').mask('000.000.000-00', { reverse: true });
+            $('#Funcionario_CPF').val(cpf);
+
+            $.validator.addMethod("data-val-validacaocpf",
+                (value, element, param) => {
+                    return validaCPF(value);
+                },
+                (params, element) => {
+                    let msgCompare = $(element).attr('data-val-validacaocpf');
+                    if (!msgCompare)
+                        msgCompare = 'cpf inválido';
+
+                    return msgCompare;
+                }
+            );
+
+            $.validator.unobtrusive.adapters.addBool("data-val-validacaocpf");
+        });
+
+        function validaCPF(value) {
+            if (!value) return false;
+
+            let posicao = 0,
+                totalDigito1 = 0,
+                totalDigito2 = 0,
+                dv1 = 0,
+                dv2 = 0,
+                digitosIdenticos = true,
+                ultimoDigito = -1,
+                character = '';
+
+            for (let c = 0; c < value.length; c++) {
+                character = value.charAt(c);
+
+                if (!isNaN(character)) {
+                    const digito = character - '0';
+
+                    if (posicao !== 0 && ultimoDigito != digito)
+                        digitosIdenticos = false;
+
+                    ultimoDigito = digito;
+                    if (posicao < 9) {
+                        totalDigito1 += digito * (10 - posicao);
+                        totalDigito2 += digito * (11 - posicao);
+                    } else if (posicao === 9) {
+                        dv1 = digito;
+                    } else if (posicao === 10) {
+                        dv2 = digito;
+                    }
+
+                    posicao++;
+                }
+            }
+
+            if (posicao > 11) return false;
+
+            if (digitosIdenticos) return false;
+
+            let digito1 = totalDigito1 % 11;
+            digito1 = digito1 < 2 ? 0 : 11 - digito1;
+
+            if (dv1 != digito1) return false;
+
+            totalDigito2 += digito1 * 2;
+            let digito2 = totalDigito2 % 11;
+            digito2 = digito2 < 2 ? 0 : 11 - digito2;
+
+            return dv2 === digito2;
+        }
+    </script>
 }

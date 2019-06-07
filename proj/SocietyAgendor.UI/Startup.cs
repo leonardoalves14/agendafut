@@ -20,6 +20,7 @@ namespace SocietyAgendor.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<IFuncionarioService, FuncionarioService>();
