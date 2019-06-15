@@ -1,4 +1,4 @@
-/************************  início criação tabelas ************************/
+/************************  inï¿½cio criaï¿½ï¿½o tabelas ************************/
 
 CREATE TABLE Cargo (
   Cargo_Id   INT          NOT NULL,
@@ -29,11 +29,11 @@ CREATE TABLE EstabelecimentoEndereco (
 );
 GO
 
--- COLOCAR CNPJ ÚNICO
+-- COLOCAR CNPJ ï¿½NICO
 CREATE TABLE Estabelecimento (
   Estabelecimento_Id         INT          NOT NULL,
   Estabelecimento_Nome       VARCHAR(200) NOT NULL,
-  Estabelecimento_CNPJ       VARCHAR(14)  NOT NULL,
+  Estabelecimento_CNPJ       VARCHAR(20)  NOT NULL,
   Estabelecimento_Telefone   VARCHAR(20)  NOT NULL,
   Estabelecimento_Celular    VARCHAR(20)  NOT NULL,
   Estabelecimento_Email      VARCHAR(300) NOT NULL,
@@ -55,12 +55,12 @@ CREATE TABLE FuncionarioEndereco (
 );
 GO
 
--- COLOCAR CPF ÚNICO
+-- COLOCAR CPF ï¿½NICO
 CREATE TABLE Funcionario (
   Funcionario_Id            INT          NOT NULL,
   Funcionario_Nome          VARCHAR(255) NOT NULL,
-  Funcionario_CPF           VARCHAR(13)  NOT NULL,
-  Funcionario_RG            VARCHAR(14)  NOT NULL,
+  Funcionario_CPF           VARCHAR(20)  NOT NULL,
+  Funcionario_RG            VARCHAR(20)  NOT NULL,
   Funcionario_DtNascimento  DATE         NOT NULL,
   Funcionario_Telefone      VARCHAR(20)  NOT NULL,
   Funcionario_Celular       VARCHAR(20)  NOT NULL,
@@ -105,12 +105,12 @@ CREATE TABLE ClienteEndereco (
 );
 GO
 
--- COLOCAR CPF ÚNICO
+-- COLOCAR CPF ï¿½NICO
 CREATE TABLE Cliente (
   Cliente_Id            INT          NOT NULL,
   Cliente_Nome          VARCHAR(255) NOT NULL,
-  Cliente_CPF           VARCHAR(13)  NOT NULL,
-  Cliente_RG            VARCHAR(14)  NOT NULL,
+  Cliente_CPF           VARCHAR(20)  NOT NULL,
+  Cliente_RG            VARCHAR(20)  NOT NULL,
   Cliente_DtNascimento  DATE         NOT NULL,
   Cliente_Telefone      VARCHAR(20)  NOT NULL,
   Cliente_Celular       VARCHAR(20)  NOT NULL,
@@ -173,9 +173,9 @@ CREATE TABLE AgendamentoDiaSemanaHorario (
 );
 GO
 
-/************************  fim criação tabelas ************************/
+/************************  fim criaï¿½ï¿½o tabelas ************************/
 
-/************************  início criação fk's tabelas ************************/
+/************************  inï¿½cio criaï¿½ï¿½o fk's tabelas ************************/
 
 ALTER TABLE Estabelecimento
   ADD CONSTRAINT FK_Estabelecimento_EstabelecimentoEndereco
@@ -243,4 +243,4 @@ FOREIGN KEY (DiaSemana_Id) REFERENCES DiaSemana (DiaSemana_Id),
 FOREIGN KEY (Horario_Id) REFERENCES Horario (Horario_Id);
 GO
 
-/************************  fim criação fk's tabelas ************************/
+/************************  fim criaï¿½ï¿½o fk's tabelas ************************/
