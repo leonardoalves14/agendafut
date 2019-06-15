@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SocietyAgendor.DataBase</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{80119f2b-a6cf-4995-ba2f-bb87fd74eebd}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>SocietyAgendor.DataBase</RootNamespace>
+    <AssemblyName>SocietyAgendor.DataBase</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\UsuarioFuncionario.sql" />
+    <Build Include="dbo\Tables\Usuario.sql" />
+    <Build Include="dbo\Tables\Horario.sql" />
+    <Build Include="dbo\Tables\FuncionarioEstabelecimento.sql" />
+    <Build Include="dbo\Tables\FuncionarioEndereco.sql" />
+    <Build Include="dbo\Tables\FuncionarioCargo.sql" />
+    <Build Include="dbo\Tables\Funcionario.sql" />
+    <Build Include="dbo\Tables\EstabelecimentoEndereco.sql" />
+    <Build Include="dbo\Tables\Estabelecimento.sql" />
+    <Build Include="dbo\Tables\DiaSemanaHorario.sql" />
+    <Build Include="dbo\Tables\DiaSemana.sql" />
+    <Build Include="dbo\Tables\ClienteEndereco.sql" />
+    <Build Include="dbo\Tables\Cliente.sql" />
+    <Build Include="dbo\Tables\Cargo.sql" />
+    <Build Include="dbo\Tables\AgendamentoDiaSemanaHorario.sql" />
+    <Build Include="dbo\Tables\AgendamentoCliente.sql" />
+    <Build Include="dbo\Tables\Agendamento.sql" />
+    <Build Include="dbo\Tables\AgendaEstabelecimento.sql" />
+    <Build Include="dbo\Stored Procedures\spuUsuarioSenha.sql" />
+    <Build Include="dbo\Stored Procedures\spuUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\spuHorario.sql" />
+    <Build Include="dbo\Stored Procedures\spuFuncionario.sql" />
+    <Build Include="dbo\Stored Procedures\spuEstabelecimento.sql" />
+    <Build Include="dbo\Stored Procedures\spuCliente.sql" />
+    <Build Include="dbo\Stored Procedures\spuCargo.sql" />
+    <Build Include="dbo\Stored Procedures\spuAgendamento.sql" />
+    <Build Include="dbo\Stored Procedures\spsValidaLogin.sql" />
+    <Build Include="dbo\Stored Procedures\spsUsuarioFuncionario.sql" />
+    <Build Include="dbo\Stored Procedures\spsUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\spsHorarioDisponivel.sql" />
+    <Build Include="dbo\Stored Procedures\spsHorario.sql" />
+    <Build Include="dbo\Stored Procedures\spsFuncionario.sql" />
+    <Build Include="dbo\Stored Procedures\spsEstabelecimento.sql" />
+    <Build Include="dbo\Stored Procedures\spsDiaSemana.sql" />
+    <Build Include="dbo\Stored Procedures\spsCliente.sql" />
+    <Build Include="dbo\Stored Procedures\spsCargo.sql" />
+    <Build Include="dbo\Stored Procedures\spsAgendamento.sql" />
+    <Build Include="dbo\Stored Procedures\spiUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\spiHorario.sql" />
+    <Build Include="dbo\Stored Procedures\spiFuncionario.sql" />
+    <Build Include="dbo\Stored Procedures\spiEstabelecimento.sql" />
+    <Build Include="dbo\Stored Procedures\spiCliente.sql" />
+    <Build Include="dbo\Stored Procedures\spiCargo.sql" />
+    <Build Include="dbo\Stored Procedures\spiAgendamento.sql" />
+    <Build Include="dbo\Stored Procedures\speFuncionario.sql" />
+    <Build Include="dbo\Stored Procedures\speEstabelecimento.sql" />
+    <Build Include="dbo\Stored Procedures\speCliente.sql" />
+    <Build Include="dbo\Stored Procedures\speCargo.sql" />
+    <Build Include="dbo\Stored Procedures\spdUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\spdHorario.sql" />
+    <Build Include="dbo\Stored Procedures\spdFuncionario.sql" />
+    <Build Include="dbo\Stored Procedures\spdEstabelecimento.sql" />
+    <Build Include="dbo\Stored Procedures\spdCliente.sql" />
+    <Build Include="dbo\Stored Procedures\spdCargo.sql" />
+    <Build Include="dbo\Stored Procedures\spdAgendamento.sql" />
+    <Build Include="dbo\Stored Procedures\reset_user_password.sql" />
+  </ItemGroup>
+</Project>

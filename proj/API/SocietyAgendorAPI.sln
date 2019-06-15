@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocietyAgendor.API", "SocietyAgendor.API\SocietyAgendor.API.csproj", "{5A230D7F-B547-4E88-B742-503675A1D6F3}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SocietyAgendor.DataBase", "SocietyAgendor.DataBase\SocietyAgendor.DataBase.sqlproj", "{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,24 @@ Global
 		{5A230D7F-B547-4E88-B742-503675A1D6F3}.Release|x64.Build.0 = Release|Any CPU
 		{5A230D7F-B547-4E88-B742-503675A1D6F3}.Release|x86.ActiveCfg = Release|Any CPU
 		{5A230D7F-B547-4E88-B742-503675A1D6F3}.Release|x86.Build.0 = Release|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Debug|x64.Build.0 = Debug|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Debug|x86.Build.0 = Debug|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Release|x64.ActiveCfg = Release|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Release|x64.Build.0 = Release|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Release|x64.Deploy.0 = Release|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Release|x86.ActiveCfg = Release|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Release|x86.Build.0 = Release|Any CPU
+		{80119F2B-A6CF-4995-BA2F-BB87FD74EEBD}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
